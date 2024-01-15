@@ -1,20 +1,26 @@
 <template>
-  <div class="hello">
+  <div class="">
     <h1>{{ msg }}</h1>
     <div v-if="data_loaded">
-      <h2>{{ company.EnterpriseNumber }}</h2>
-      <h2>{{ company.denomination }}</h2>
-      <h2>{{ company.addresses }}</h2>
-      <h2>{{ company.type_entreprise_fr }}</h2>
+      <div class="md:flex">
 
-      <h2>{{ company.status }}</h2>
-      <div>
-        {{ company.links }}
-      </div>
-
+        <div class="mt-4 md:mt-0 md:ml-6">
+          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">{{ company.EnterpriseNumber }}</div>
+          <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline">{{ company.type_entreprise_fr }}</a>
+      
+          <h2>{{ company.denomination }}</h2>
+            <h2>{{ company.addresses }}</h2>
+            <h2>{{ company.status }}</h2>
+            
+            <p class="mt-2 text-gray-600">  
+    
+              {{ company.links }}
+          </p>
+        </div>
     </div>
+  </div> 
+</div> 
 
-</div>
 </template>
 
 <script>
@@ -51,18 +57,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>

@@ -1,5 +1,25 @@
 <template>
-  <HelloWorld msg="Welcome to Subsidies"/>
+  <div class="container mx-auto">
+    <div class="flex flex-row flex-wrap py-4">
+        <aside class="w-full sm:w-1/3 md:w-1/4 px-2">
+            <div class="sticky top-0 p-4 w-full">
+                <!-- navigation -->
+                <ul class="flex flex-col overflow-hidden">
+                    <li>test</li>
+                    <li>test</li>
+
+                </ul>
+            </div>
+        </aside>
+        <main role="main" class="w-full sm:w-2/3 md:w-3/4 pt-1 px-2">
+            <!-- content area -->
+            <HelloWorld msg="Welcome to Subsidies"/>
+        </main>
+    </div>
+</div>
+<footer class="mt-auto">
+    Réalisé avec ❤️ sous licence libre | <a href="https://github.com/data-cfwb/subsidies">Code source</a>
+</footer>
 </template>
 
 <script>
@@ -14,12 +34,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
