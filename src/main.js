@@ -6,7 +6,6 @@ import App from './App.vue'
 import HomeLayout from './components/layouts/HomeLayout.vue'
 import AboutLayout from './components/layouts/AboutLayout.vue'
 
-
 import './styles/base.css'
 
 const router = createRouter({

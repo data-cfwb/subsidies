@@ -5,17 +5,36 @@
       <div class="md:flex">
 
         <div class="mt-4 md:mt-0 md:ml-6">
-          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">{{ company.EnterpriseNumber }}</div>
+          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">{{ company.EnterpriseNumberBE }}</div>
           <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline">{{ company.type_entreprise_fr }}</a>
       
-          <h2>{{ company.denomination }}</h2>
-            <h2>{{ company.addresses }}</h2>
-            <h2>{{ company.status }}</h2>
+          <h2>{{ company.Contacts }}</h2>
+          <h2>{{ company.Addresses }}</h2>
+          <h2>{{ company.status }}</h2>
             
-            <p class="mt-2 text-gray-600">  
-    
-              {{ company.links }}
+          <p class="mt-2 text-gray-600">  
+              {{ company.links }}       
           </p>
+
+          <ul>
+            <li v-for="key, ext_link in company.ExternalLinks" :key="ext_link">
+               {{ key.service_name }}: <a :href="key.href">{{ key.href }}</a>
+            </li>
+          </ul>
+
+          <ul>
+            <li v-for="subsidy in company.SubsidiesPerYear" :key="subsidy">
+               {{ subsidy }}
+            </li>
+
+            <BarChart :data="company.SubsidiesPerYearForChart" aria-label="Sales figures for the years 2022 to 2024. Sales in 2022: 987, Sales in 2023: 1209, Sales in 2024: 825." />
+
+          </ul>
+
+
+          <code>
+            {{ company }}
+          </code>
         </div>
     </div>
   </div> 
@@ -25,11 +44,14 @@
 
 <script>
 import axios from 'axios'
+import BarChart from './charts/BarChart.vue'
 
 export default {
-  name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    BarChart
   },
   data () {
     return {
@@ -42,7 +64,7 @@ export default {
   },
   methods: {
     getSubsidies: function () {
-      axios.get('https://be-companies.tintamarre.be/api/enterprises/random')
+      axios.get('https://be-companies.tintamarre.be/api/enterprises/0419.172.434')
       .then(response => {
         this.company = response.data.data
         this.data_loaded = true
