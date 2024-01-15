@@ -3,12 +3,8 @@
       id="my-chart-id"
       :options="chartOptions"
       :data="chartData"
-      aria-describedby="my-data-table"
     />
 
-    <code>
-      {{ data }}
-    </code>
   </template>
   
   <script>
@@ -25,7 +21,7 @@
         type: Object,
         required: true
       }
-    },
+    },    
     data() {
       return {
         chartData: {
@@ -34,7 +30,8 @@
             label: 'Subventions par année',
             backgroundColor: '#9DBC98',
             data: this.data.values 
-          } ]
+          },
+          ]
         },
         chartOptions: {
           responsive: true

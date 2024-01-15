@@ -23,6 +23,9 @@
     footer {
       @apply text-center text-sm text-gray-500;
     }
+    table {
+      @apply border-collapse border border-gray-300;
+    }
   }
 
   @layer components {

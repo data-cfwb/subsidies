@@ -5,8 +5,14 @@
             <div class="sticky top-0 p-4 w-full">
                 <!-- navigation -->
                 <ul class="flex flex-col overflow-hidden">
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/about">About</router-link></li>
+
+                    <li><router-link to="/entreprises/0477.904.548">Home</router-link></li>
+                    <li><router-link to="/entreprises/0419.172.434">Home</router-link></li>
+                    <li><router-link to="/entreprises/0862.932.685">Home</router-link></li>
+
+                    <li><router-link to="/statistiques">Stats</router-link></li>
+                    <li><router-link to="/a-propos">À propos</router-link></li>
+
                 </ul>
             </div>
         </aside>
