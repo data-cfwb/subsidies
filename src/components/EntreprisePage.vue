@@ -6,26 +6,29 @@
         {{ be_number }}
 
         <div class="mt-4 md:mt-0 md:ml-6">
-          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">{{ company.EnterpriseNumberBE }}</div>
+          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+            {{ company.EnterpriseNumberBE }}
+          </div>
              
 
-            <BarChart :data="company.SubsidiesPerYearForChart" />
+          <BarChart :data="company.SubsidiesPerYearForChart" />
 
          
           <ul>
-            <li v-for="subsidy in company.Subsidies" :key="subsidy">
+            <li
+              v-for="subsidy in company.Subsidies"
+              :key="subsidy"
+            >
               <p>{{ subsidy.Annee }}: {{ subsidy.Ministre }} {{ subsidy.Competence }}</p>
             </li>
           </ul>
-        
         </div>
+      </div>
+    </div> 
+    <div v-else>
+      <p>Loading...</p>
     </div>
-  </div> 
-  <div v-else>
-    <p>Loading...</p>
   </div>
-</div> 
-
 </template>
 
 <script>
@@ -33,12 +36,12 @@ import axios from 'axios';
 import BarChart from './charts/BarChart.vue';
 
 export default {
+  components: {
+    BarChart
+  },
   props: {
     msg: String,
     be_number: String
-  },
-  components: {
-    BarChart
   },
   data () {
     return {
