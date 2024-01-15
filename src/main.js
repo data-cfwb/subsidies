@@ -17,6 +17,7 @@ const router = createRouter({
     { path: '/a-propos', component: AboutLayout },
   ],
 });
+
 const app = createApp(App);
 app.use(router);
 app.mount('#app');

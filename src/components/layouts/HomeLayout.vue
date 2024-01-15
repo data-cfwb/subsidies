@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Subventions</h1>
-    {{ $route.params.be_number }}
+    <p>{{ $route.params.be_number }}</p>
 
     <EntreprisePage
       :be_number="$route.params.be_number"
