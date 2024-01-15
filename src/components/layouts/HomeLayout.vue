@@ -4,7 +4,6 @@
     {{ $route.params.be_number }}
 
     <EntreprisePage
-      msg="Prout!"
       :be_number="$route.params.be_number"
     />
   </div>

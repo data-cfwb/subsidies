@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <h1>{{ msg }}</h1>
     {{ be_number }}
     <div v-if="data_loaded">
       <div class="md:flex">
@@ -14,7 +13,7 @@
               v-for="subsidy in company.Subsidies"
               :key="subsidy"
             >
-              {{ subsidy.Annee }}: {{ subsidy.Ministre }} {{ subsidy.Competence }}
+              {{ subsidy.Annee }}: {{ subsidy.Ministre }} {{ subsidy.Compétence }}
             </li>
           </ul>
         </div>
@@ -35,7 +34,6 @@ export default {
     BarChart
   },
   props: {
-    msg: String,
     be_number: String
   },
   data () {
