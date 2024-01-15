@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import BarChart from './charts/BarChart.vue'
+import axios from 'axios';
+import BarChart from './charts/BarChart.vue';
 
 export default {
   props: {
@@ -44,34 +44,34 @@ export default {
     return {
       company: {},
       data_loaded: false
-    }
+    };
   },
   mounted () {
-    this.getSubsidies()
+    this.getSubsidies();
   },
   created() {
     this.$watch(
       () => this.$route.params,
       () => {
-        this.data_loaded = false
-        this.getSubsidies()
+        this.data_loaded = false;
+        this.getSubsidies();
         // reload Chart
       }
-    )
+    );
   },
   methods: {
     getSubsidies: function () {
       axios.get('https://be-companies.tintamarre.be/api/enterprises/' + this.be_number)
-      .then(response => {
-        this.company = response.data.data
-        this.data_loaded = true
-      })
-      .catch(e => {
-        console.log(e)
-      })
+        .then(response => {
+          this.company = response.data.data;
+          this.data_loaded = true;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
