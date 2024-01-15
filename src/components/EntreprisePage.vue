@@ -1,25 +1,20 @@
 <template>
   <div class="">
     <h1>{{ msg }}</h1>
+    {{ be_number }}
     <div v-if="data_loaded">
       <div class="md:flex">
-        {{ be_number }}
-
         <div class="mt-4 md:mt-0 md:ml-6">
           <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
             {{ company.EnterpriseNumberBE }}
-          </div>
-             
-
+          </div>            
           <BarChart :data="company.SubsidiesPerYearForChart" />
-
-         
           <ul>
             <li
               v-for="subsidy in company.Subsidies"
               :key="subsidy"
             >
-              <p>{{ subsidy.Annee }}: {{ subsidy.Ministre }} {{ subsidy.Competence }}</p>
+              {{ subsidy.Annee }}: {{ subsidy.Ministre }} {{ subsidy.Competence }}
             </li>
           </ul>
         </div>
