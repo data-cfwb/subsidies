@@ -12,27 +12,11 @@
         </aside>
         <main role="main" class="w-full sm:w-2/3 md:w-3/4 pt-1 px-2">
             <!-- content area -->
-            <HelloWorld msg="Welcome to Subsidies"/>
             <router-view></router-view>
         </main>
     </div>
 </div>
 <footer class="mt-auto">
-    Réalisé avec ❤️ sous licence libre | <a href="https://github.com/data-cfwb/subsidies">Code source</a>
+    Réalisé avec ❤️ sous <a href="https://github.com/data-cfwb/subsidies/blob/main/LICENSE">licence libre</a> | <a href="https://github.com/data-cfwb/subsidies">Code source</a>
 </footer>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
-<style>
-
-</style>
