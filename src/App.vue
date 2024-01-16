@@ -22,6 +22,11 @@
                 </router-link>
               </li>
               <li>
+                <router-link to="/entreprises/0207347495">
+                  Commune de Sprimont
+                </router-link>
+              </li>
+              <li>
                 <router-link to="/entreprises/0442.373.250">
                   Centre culturel de Verviers
                 </router-link>

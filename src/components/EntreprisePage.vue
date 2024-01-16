@@ -59,10 +59,10 @@
           <div>
             <ul>
               <li
-                v-for="est in company.Establishments"
-                :key="est"
+                v-for="estab in company.Establishments"
+                :key="estab"
               >
-                {{ est.EnterpriseNumber }}: {{ est.StartDate }}
+                {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
               </li>
             </ul>
           </div>
