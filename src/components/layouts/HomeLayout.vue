@@ -4,11 +4,10 @@
     <p>{{ $route.params.be_number }}</p>
 
     <EntreprisePage
-      :be_number="$route.params.be_number"
+      :be-number="$route.params.be_number"
     />
   </div>
 </template>
-
 
 <script>
 import EntreprisePage from '../EntreprisePage.vue';
