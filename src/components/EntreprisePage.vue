@@ -108,9 +108,13 @@
               </tbody>
             </table>
           </div>
-        
 
-          <BarChart :data="company.SubsidiesPerYearForChart" />
+          <div class="w-1/2">
+            <BarChart
+              :data="company.SubsidiesPerYearForChart"
+            />
+          </div>
+
           <ul>
             <li
               v-for="subsidy in company.Subsidies"
