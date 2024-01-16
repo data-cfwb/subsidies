@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>Subventions</h1>
-    <p>{{ $route.params.be_number }}</p>
-
     <EntreprisePage
       :be-number="$route.params.be_number"
     />

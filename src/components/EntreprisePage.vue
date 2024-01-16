@@ -3,15 +3,15 @@
     <div v-if="data_loaded">
       <div class="md:flex">
         <div class="mt-4 md:mt-0 md:ml-6">
-          <h1 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-            {{ listDenominations }}
+          <h1 class="h1-main-title">
+            {{ joinOnKey(company.Denominations, 'Denomination') }}
           </h1>
-          <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+          <div class="companyNumber">
             {{ company.EnterpriseNumberBE }}
           </div>            
         
           <hr>
-          <h2 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+          <h2 class="h2-subtitle">
             Adresse(s)
           </h2>
           <div>
@@ -27,7 +27,7 @@
             </ul>
           </div>
 
-          <h2 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+          <h2 class="h2-subtitle">
             Contacts
           </h2>
           <div>
@@ -53,7 +53,49 @@
               </li>
             </ul>
           </div>
-          <h2 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+     
+
+          <hr>
+          <h2 class="h2-subtitle">
+            Activities
+          </h2>
+          <div>
+            <ul>
+              <li
+                v-for="nace in company.Activities"
+                :key="nace"
+              >
+                {{ nace.activity }} {{ nace.NaceCode }}:
+                {{ joinOnKey(nace.labels, 'Description') }}
+              </li>
+            </ul>
+          </div>
+          <h2 class="h2-subtitle">
+            Status
+          </h2>
+          <div>
+            {{ joinOnKey(company.StatusLabel, 'Description') }}
+          </div>
+          <div>
+            {{ joinOnKey(company.JuridicalSituationLabel, 'Description') }}
+          </div>
+          <div>
+            {{ joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
+          </div>
+
+          <hr>
+          {{ company.TypeEntrepriseLabel }}
+
+          <BarChart :data="company.SubsidiesPerYearForChart" />
+          <ul>
+            <li
+              v-for="subsidy in company.Subsidies"
+              :key="subsidy"
+            >
+              {{ subsidy.Year }}: {{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.AmountInEuros }} €
+            </li>
+          </ul>
+          <h2 class="h2-subtitle">
             Establishments
           </h2>
           <div>
@@ -66,42 +108,7 @@
               </li>
             </ul>
           </div>
-
-          <hr>
-          <h2 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-            Activities
-          </h2>
-          <div>
-            <ul>
-              <li
-                v-for="nace in company.Activities"
-                :key="nace"
-              >
-                {{ nace.activity }} {{ nace.NaceCode }}: {{ nace.labels }}
-              </li>
-            </ul>
-          </div>
-          <hr>
-          {{ company.StatusLabel }}
-          <hr>
-          {{ company.JuridicalSituationLabel }}
-          <hr>
-          {{ company.TypeEntrepriseLabel }}
-          <hr>
-          {{ company.JuridicalFormCACLabel }}
-
-
-          <BarChart :data="company.SubsidiesPerYearForChart" />
-          <ul>
-            <li
-              v-for="subsidy in company.Subsidies"
-              :key="subsidy"
-            >
-              {{ subsidy.Year }}: {{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.AmountInEuros }} €
-            </li>
-          </ul>
-
-          <h2>
+          <h2 class="h2-subtitle">
             Liens externes
           </h2>
           <ul class="list-disc">
@@ -164,6 +171,9 @@ export default {
     );
   },
   methods: {
+    joinOnKey: function (array, key) {
+      return array.map(item => item[key]).join(' / ');
+    },
     getSubsidies: function () {
       axios.get('https://be-companies.tintamarre.be/api/enterprises/' + this.beNumber)
         .then(response => {

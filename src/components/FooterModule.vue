@@ -1,5 +1,5 @@
 <template>
   <footer class="mt-auto">
-    Réalisé avec ❤️ sous <a href="https://github.com/data-cfwb/subsidies/blob/main/LICENSE">licence libre</a> | <a href="https://github.com/data-cfwb/subsidies">Code source</a>
+    Réalisé sous licence libre. <br> <a href="https://github.com/data-cfwb/subsidies">Source code</a>
   </footer>
 </template>
