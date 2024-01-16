@@ -7,29 +7,39 @@
             <!-- navigation -->
             <ul class="flex flex-col overflow-hidden">
               <li>
-                <router-link to="/entreprises/0477.904.548">
-                  Home
+                <router-link to="/entreprises/0206.524.876">
+                  Ville d'Arlon
                 </router-link>
               </li>
               <li>
                 <router-link to="/entreprises/0419.172.434">
-                  Home
+                  Les Grignoux
                 </router-link>
               </li>
               <li>
-                <router-link to="/entreprises/0862.932.685">
-                  Home
+                <router-link to="/entreprises/0783.357.746">
+                  Petrunia
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/entreprises/0442.373.250">
+                  Centre culturel de Verviers
                 </router-link>
               </li>
 
               <li>
                 <router-link to="/statistiques">
-                  Stats
+                  Statistiques
                 </router-link>
               </li>
               <li>
                 <router-link to="/a-propos">
                   À propos
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/search">
+                  Rechercher
                 </router-link>
               </li>
             </ul>
