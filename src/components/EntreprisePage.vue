@@ -60,12 +60,13 @@
             Activities
           </h2>
           <div>
-            <ul>
+            <ul class="list-disc">
               <li
                 v-for="nace in company.Activities"
                 :key="nace"
               >
-                {{ nace.activity }} {{ nace.NaceCode }}:
+                {{ nace.NaceCode }} <span class="text-sm italic uppercase text-gray-500">
+                  {{ nace.activity }} </span>:
                 {{ joinOnKey(nace.labels, 'Description') }}
               </li>
             </ul>
@@ -93,8 +94,12 @@
             <table class="table-auto">
               <thead>
                 <tr>
-                  <th>Année</th>
-                  <th>Montant</th>
+                  <th class="text-left">
+                    Année
+                  </th>
+                  <th class="text-right">
+                    Montant
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -103,7 +108,9 @@
                   :key="subsidy"
                 >
                   <td>{{ subsidy.year }}</td>
-                  <td>{{ Math.round(subsidy.total) }}</td>
+                  <td class="text-right">
+                    {{ Math.round(subsidy.total) }} €
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -115,12 +122,13 @@
             />
           </div>
 
-          <ul>
+          <ul class="list-disc">
             <li
               v-for="subsidy in company.Subsidies"
               :key="subsidy"
             >
-              {{ subsidy.Year }}: {{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.AmountInEuros }} €
+              {{ subsidy.Year }}: {{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.LegalBasis }}
+              {{ subsidy.AdministrationName }} {{ subsidy.AmountInEuros }} € 
             </li>
           </ul>
           <h2 class="h2-subtitle">
