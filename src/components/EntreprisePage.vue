@@ -53,7 +53,7 @@
               </li>
             </ul>
           </div>
-     
+          
 
           <hr>
           <h2 class="h2-subtitle">
@@ -85,6 +85,30 @@
 
           <hr>
           {{ company.TypeEntrepriseLabel }}
+
+          <h2 class="h2-subtitle">
+            Subsidies
+          </h2>
+          <div>
+            <table class="table-auto">
+              <thead>
+                <tr>
+                  <th>Année</th>
+                  <th>Montant</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="subsidy in company.SubsidiesPerYear"
+                  :key="subsidy"
+                >
+                  <td>{{ subsidy.year }}</td>
+                  <td>{{ Math.round(subsidy.total) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
 
           <BarChart :data="company.SubsidiesPerYearForChart" />
           <ul>

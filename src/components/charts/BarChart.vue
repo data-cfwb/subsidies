@@ -27,7 +27,7 @@ export default {
         labels: this.data.labels,
         datasets: [ { 
           label: 'Subventions par année',
-          backgroundColor: 'blue',
+          backgroundColor: '#43766C',
           data: this.data.values 
         } ]
       },
