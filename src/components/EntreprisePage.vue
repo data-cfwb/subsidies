@@ -162,18 +162,21 @@
       </div>
     </div> 
     <div v-else>
-      <p>Loading...</p>
+      <LoadingFwb />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 import BarChart from './charts/BarChart.vue';
+import LoadingFwb from './partials/LoadingFwb.vue';
 
 export default {
   components: {
-    BarChart
+    BarChart,
+    LoadingFwb
   },
   props: {
     beNumber: {

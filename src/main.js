@@ -3,6 +3,7 @@ import { createRouter } from 'vue-router';
 import { createWebHistory } from 'vue-router';
 
 import App from './App.vue';
+
 import HomeLayout from './components/layouts/HomeLayout.vue';
 import AboutLayout from './components/layouts/AboutLayout.vue';
 import StatsLayout from './components/layouts/StatsLayout.vue';
