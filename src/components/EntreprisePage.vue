@@ -1,8 +1,8 @@
 <template>
   <div class="">
     <div v-if="data_loaded">
-      <div class="md:flex">
-        <div class="mt-4 md:mt-0 md:ml-6">
+      <div class="">
+        <div class="">
           <h1 class="h1-main-title">
             {{ joinOnKey(company.Denominations, 'Denomination') }}
           </h1>
@@ -60,14 +60,20 @@
             Activities
           </h2>
           <div>
-            <ul class="list-disc">
+            <ul class="list-disc ml-4">
               <li
-                v-for="nace in company.Activities"
-                :key="nace"
+                v-for="naces, key in company.ActivitiesMapByClassification"
+                :key="key"
               >
-                {{ nace.NaceCode }} <span class="text-sm italic uppercase text-gray-500">
-                  {{ nace.activity }} </span>:
-                {{ joinOnKey(nace.labels, 'Description') }}
+                {{ key }}
+                <ul class="list-disc ml-4">
+                  <li
+                    v-for="nace in naces"
+                    :key="nace"
+                  >
+                    {{ nace.NaceCode }}
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -109,7 +115,7 @@
                 >
                   <td>{{ subsidy.year }}</td>
                   <td class="text-right">
-                    {{ Math.round(subsidy.total) }} €
+                    {{ subsidy.total }} €
                   </td>
                 </tr>
               </tbody>
@@ -122,15 +128,24 @@
             />
           </div>
 
-          <ul class="list-disc">
-            <li
-              v-for="subsidy in company.Subsidies"
-              :key="subsidy"
-            >
-              {{ subsidy.Year }}: {{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.LegalBasis }}
-              {{ subsidy.AdministrationName }} {{ subsidy.AmountInEuros }} € 
-            </li>
-          </ul>
+          <div
+            v-for="subsidies, key in company.SubsidiesMapByYear"
+            :key="key"
+          >
+            <h2>{{ key }}</h2>
+             
+            <ul class="list-disc ml-4">
+              <li
+                v-for="subsidy in subsidies"
+                :key="subsidy"
+              >
+                {{ subsidy.AmountInEuros }} € <span class="text-sm">{{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.LegalBasis }}
+                  {{ subsidy.AdministrationName }}</span>
+              </li>
+            </ul>
+          </div>
+
+         
           <h2 class="h2-subtitle">
             Establishments
           </h2>

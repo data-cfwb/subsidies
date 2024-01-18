@@ -1,56 +1,36 @@
 <template>
   <div>
-    <div class="container mx-auto">
-      <div class="flex flex-row flex-wrap py-4">
-        <aside class="w-full sm:w-1/3 md:w-1/4 px-2">
-          <div class="sticky top-0 p-4 w-full">
-            <!-- navigation -->
-            <nav>
-              <ul class="flex flex-col overflow-hidden">
-                <li>
-                  <router-link to="/entreprises/random">
-                    Organisation aléatoire
-                  </router-link>
-                </li>
-              
-                <li>
-                  <router-link to="/statistiques">
-                    Statistiques
-                  </router-link>
-                </li>
-                <li>
-                  <router-link to="/a-propos">
-                    À propos
-                  </router-link>
-                </li>
-                <li>
-                  <router-link to="/search">
-                    Rechercher
-                  </router-link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </aside>
-        <main
-          role="main"
-          class="w-full sm:w-2/3 md:w-3/4 pt-1 px-2"
-        >    
-          <!-- content area -->
+    <NavbarModule />
+
+    <div class="py-10">
+      <header>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">
+            {{ $route.meta.title }}
+          </h1>
+        </div>
+      </header>
+      <main>
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <!-- Your content -->
           <router-view />
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
+  
     <FooterModule />
   </div>
 </template>
 
 <script>
 import FooterModule from './components/FooterModule.vue';
+import NavbarModule from './components/NavbarModule.vue';
+
 export default {
   name: 'App',
   components: {
-    FooterModule
+    FooterModule,
+    NavbarModule
   }
 };
 

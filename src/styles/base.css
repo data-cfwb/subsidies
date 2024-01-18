@@ -4,35 +4,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply text-gray-800 min-h-screen font-sans bg-gray-100;
-  }
-  nav {
-    @apply bg-gray-50 p-4 text-white;
-  }
-  h1 {
-    @apply text-2xl;
-  }
-  h2 {
-    @apply text-xl;
-  }
   a {
-    @apply text-blue-500;
+    @apply text-indigo-600;
   }
   a:hover {
-    @apply text-blue-700;
-  }
-  footer {
-    @apply text-center text-sm text-gray-500;
-  }
-  table {
-    @apply border-collapse border min-w-full border border-gray-300;
-  }
-  th {
-    @apply bg-gray-200 border border-gray-300 px-4 py-2;
-  }
-  td {
-    @apply border border-gray-300 px-4 py-2;
+    @apply text-indigo-800;
   }
 }
 
@@ -40,28 +16,17 @@
   .btn {
     @apply font-bold py-2 px-4 rounded;
   }
-
   .btn-blue {
     @apply bg-blue-500 text-white;
   }
   .btn-blue:hover {
     @apply bg-blue-700;
   }
-
   .btn-gray {
     @apply bg-gray-400 text-gray-800;
   }
   .btn-gray:hover {
     @apply bg-gray-500;
-  }
-  .h1-main-title {
-    @apply text-3xl text-gray-800;
-  }
-  .h2-subtitle {
-    @apply text-xl text-gray-600;
-  }
-  .h3-subtitle {
-    @apply text-lg text-gray-600;
   }
   .companyNumber {
     @apply uppercase tracking-wide text-sm text-indigo-600 font-bold;
@@ -69,4 +34,3 @@
 
 }
 
-  

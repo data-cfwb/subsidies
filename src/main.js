@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import { createRouter } from 'vue-router';
 import { createWebHistory } from 'vue-router';
 
+import {nextTick} from 'vue';
+
 import App from './App.vue';
 
 import HomeLayout from './components/layouts/HomeLayout.vue';
@@ -11,14 +13,48 @@ import SearchLayout from './components/layouts/SearchLayout.vue';
 
 import './styles/base.css';
 
+const site_default_title = 'Subventions à la Fédération Wallonie-Bruxelles';
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/entreprises/:be_number', component: HomeLayout },
-    { path: '/search', component: SearchLayout },
-    { path: '/statistiques', component: StatsLayout },
-    { path: '/a-propos', component: AboutLayout },
+    { 
+      path: '/entreprises/:be_number', 
+      component: HomeLayout,
+      meta: {
+        title: 'Organisation'
+      } 
+    },
+    { 
+      path: '/search', 
+      component: SearchLayout,
+      meta: {
+        title: 'Recherche'
+      } 
+    },
+    { 
+      path: '/statistiques', 
+      component: StatsLayout,
+      meta: {
+        title: 'Statistiques'
+      } 
+    },
+    { 
+      path: '/a-propos', 
+      component: AboutLayout,
+      meta: {
+        title: 'À propos'
+      }  
+    },
   ],
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
+});
+
+router.afterEach((to) => {
+  nextTick(() => {
+    document.title = site_default_title + ' - ' + to.meta.title || site_default_title;
+  });
 });
 
 const app = createApp(App);
