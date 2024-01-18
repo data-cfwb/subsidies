@@ -1,5 +1,11 @@
 <template>
   <div>
-    <h1>Statistiques</h1>
+    <iframe
+      src="https://dashboard.datawb.be/public/dashboard/16dbb126-cb73-4b3a-9965-22029a6dd752"
+      frameborder="0"
+      width="1200"
+      height="3000"
+      allowtransparency
+    />
   </div>
 </template>
