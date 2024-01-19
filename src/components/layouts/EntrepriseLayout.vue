@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <EntreprisePage
-      :be-number="$route.params.be_number"
-    />
-  </div>
+  <EntreprisePage
+    :be-number="$route.params.be_number"
+  />
 </template>
   
 <script>
