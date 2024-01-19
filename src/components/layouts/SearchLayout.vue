@@ -35,9 +35,14 @@
 import axios from 'axios';
 
 export default {
+  props: {
+    searchName: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
-      search_name: this.$route.query.name,
       results: []
     };
   },
@@ -47,8 +52,8 @@ export default {
   },
   methods: {
     getSearchResults: function () {
-      if (this.search_name) {
-        axios.get('https://be-companies.tintamarre.be/api/lookup?name=' + this.search_name)
+      if (this.searchName) {
+        axios.get('https://be-companies.tintamarre.be/api/lookup?name=' + this.searchName)
           .then(response => {
             this.results = response.data;
           })

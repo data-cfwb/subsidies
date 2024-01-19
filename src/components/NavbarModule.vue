@@ -48,7 +48,10 @@
           </div>
         </div>
         <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
-          <div class="w-full max-w-lg lg:max-w-xs">
+          <div
+            v-if="$route.path !== '/search'"
+            class="w-full max-w-lg lg:max-w-xs"
+          >
             <label
               for="search"
               class="sr-only"
@@ -60,7 +63,7 @@
                   aria-hidden="true"
                 />
               </div>
-              <!-- <input
+              <input
                 id="search"
                 v-model="search"
                 name="search"
@@ -68,7 +71,7 @@
                 placeholder="Rechercher"
                 type="search"
                 @keyup.enter="redirectToSearch"
-              > -->
+              >
             </div>
           </div>
         </div>
@@ -162,7 +165,8 @@ export default {
     redirectToSearch: function () {
       this.$router.push(
         { 
-          path: this.search_url
+          path: this.search_url,
+          query: { name: this.search }
         }
       );
     }

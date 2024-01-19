@@ -36,6 +36,7 @@ const router = createRouter({
     { 
       path: '/search',
       component: SearchLayout,
+      props: route => ({ searchName: route.query.name }),
       meta: {
         title: 'Recherche'
       } 
