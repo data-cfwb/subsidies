@@ -11,8 +11,7 @@
       </RouterLink>
     </div>            
         
-    <hr>
-    <h2 class="h2-subtitle">
+    <h2>
       Adresse(s)
     </h2>
     <div>
@@ -28,7 +27,7 @@
       </ul>
     </div>
 
-    <h2 class="h2-subtitle">
+    <h2>
       Contacts
     </h2>
     <div>
@@ -56,21 +55,22 @@
     </div>
           
 
-    <hr>
-    <h2 class="h2-subtitle">
+    <h2>
       Activities
     </h2>
     <div>
       <ul class="list-disc ml-4">
         <li
-          v-for="nace in company.Activities"
-          :key="nace"
+          v-for="(values, key) in ActivitiesMap"
+          :key="key"
         >
-          {{ nace }}
-        </li><li />
+          {{ values.activity }}
+          {{ values.NaceCode }} {{ values.NaceVersion }}
+          {{ joinOnKey(values.labels, 'Description') }}
+        </li>
       </ul>
     </div>
-    <h2 class="h2-subtitle">
+    <h2>
       Status
     </h2>
     <div>
@@ -83,10 +83,9 @@
       {{ joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
     </div>
 
-    <hr>
     {{ company.TypeEntrepriseLabel }}
 
-    <h2 class="h2-subtitle">
+    <h2>
       Subsidies
     </h2>
     <div>
@@ -138,7 +137,7 @@
     </div>
 
          
-    <h2 class="h2-subtitle">
+    <h2>
       Establishments
     </h2>
     <div>
@@ -151,7 +150,7 @@
         </li>
       </ul>
     </div>
-    <h2 class="h2-subtitle">
+    <h2>
       Liens externes
     </h2>
     <ul class="list-disc">
@@ -195,6 +194,13 @@ export default {
     };
   },
   computed: {
+    ActivitiesMap: function () {
+      return this.company.Activities.reduce((map, obj) => {
+        map[obj.activity] = obj;
+        return map;
+      }, {});
+    }
+
 
   },
   mounted () {
