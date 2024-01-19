@@ -34,7 +34,7 @@ const router = createRouter({
       } 
     },
     { 
-      path: '/search:search?', 
+      path: '/search',
       component: SearchLayout,
       meta: {
         title: 'Recherche'

@@ -47,13 +47,15 @@ export default {
   },
   methods: {
     getSearchResults: function () {
-      axios.get('https://be-companies.tintamarre.be/api/lookup?name=' + this.search_name)
-        .then(response => {
-          this.results = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      if (this.search_name) {
+        axios.get('https://be-companies.tintamarre.be/api/lookup?name=' + this.search_name)
+          .then(response => {
+            this.results = response.data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     }
   }
 };

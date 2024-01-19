@@ -27,7 +27,7 @@
               :exact-active-class="'inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'"
               class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
             >
-              Organisme aléatoire
+              Organisation aléatoire
             </router-link>
             <router-link
               to="/statistiques"
@@ -60,7 +60,7 @@
                   aria-hidden="true"
                 />
               </div>
-              <input
+              <!-- <input
                 id="search"
                 v-model="search"
                 name="search"
@@ -68,7 +68,7 @@
                 placeholder="Rechercher"
                 type="search"
                 @keyup.enter="redirectToSearch"
-              >
+              > -->
             </div>
           </div>
         </div>
@@ -153,11 +153,16 @@ export default {
       search: '',
     };
   },
+  computed: {
+    search_url: function () {
+      return '/search?name=' + this.search;
+    }
+  },
   methods: {
     redirectToSearch: function () {
       this.$router.push(
         { 
-          path: '/search?name=' + this.search
+          path: this.search_url
         }
       );
     }
