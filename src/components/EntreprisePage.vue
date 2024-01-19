@@ -55,21 +55,39 @@
     </div>
           
 
-    <h2>
-      Activities
-    </h2>
+
     <div>
-      <ul class="list-disc ml-4">
-        <li
-          v-for="(values, key) in ActivitiesMap"
-          :key="key"
-        >
-          {{ values.activity }}
-          {{ values.NaceCode }} {{ values.NaceVersion }}
-          {{ joinOnKey(values.labels, 'Description') }}
-        </li>
-      </ul>
+      <div class="px-4 sm:px-0">
+        <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
+          Activités
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+          Liste des codes NACE de l'organisation
+        </p>
+      </div>
+      <div class="mt-6 border-t border-gray-100">
+        <dl class="divide-y divide-gray-100">
+          <div
+            v-for="(values, key) in ActivitiesMap"
+            :key="key"
+            class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+          >
+            <dt class="text-sm font-medium leading-6 text-gray-900">
+              {{ values.activity }}<br>
+              Code Nace: {{ values.NaceCode }} <br>
+              Version Nace: {{ values.NaceVersion }}
+            </dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <h4 class="text-sm font-medium leading-6 text-gray-900">
+                Description
+              </h4>
+              {{ joinOnKey(values.labels, 'Description') }}
+            </dd>
+          </div>
+        </dl>
+      </div>
     </div>
+
     <h2>
       Status
     </h2>
@@ -123,20 +141,73 @@
       v-for="(subsidies, year) in company.SubsidiesMapByYear"
       :key="year"
     >
-      <h2>{{ year }}</h2>
-             
-      <ul class="list-disc ml-4">
-        <li
-          v-for="subsidy in subsidies"
-          :key="subsidy"
-        >
-          {{ subsidy.AmountInEuros }} € <span class="text-sm">{{ subsidy.MinistreName }} {{ subsidy.Compétence }} {{ subsidy.LegalBasis }}
-            {{ subsidy.AdministrationName }}</span>
-        </li>
-      </ul>
+      <div class="px-4 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:items-center">
+          <div class="sm:flex-auto">
+            <h1 class="text-base font-semibold leading-6 text-gray-900">
+              {{ year }}
+            </h1>
+            <p class="mt-2 text-sm text-gray-700">
+              La liste des subventions pour l'année {{ year }}.
+            </p>
+          </div>
+          <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none" />
+        </div>
+        <div class="mt-8 flow-root">
+          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <table class="min-w-full divide-y divide-gray-300">
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 text-right"
+                    >
+                      Montant
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Compétence (Ministre)
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Nom de l'administration et base légale
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr
+                    v-for="subsidy in subsidies"
+                    :key="subsidy"
+                  >
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
+                      {{ subsidy.AmountInEuros }} €
+                    </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <span class="text-sm">{{ subsidy.Compétence }} 
+                        <br>
+                        {{ subsidy.MinistreName }}
+                      </span>
+                    </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <br>
+                      {{ subsidy.AdministrationName }}<br>
+                      {{ subsidy.LegalBasis }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-         
+    <!--          
     <h2>
       Establishments
     </h2>
@@ -149,7 +220,7 @@
           {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
         </li>
       </ul>
-    </div>
+    </div> -->
     <h2>
       Liens externes
     </h2>
