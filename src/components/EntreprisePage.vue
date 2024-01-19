@@ -62,19 +62,11 @@
           <div>
             <ul class="list-disc ml-4">
               <li
-                v-for="naces, key in company.ActivitiesMapByClassification"
-                :key="key"
+                v-for="nace in company.Activities"
+                :key="nace"
               >
-                {{ key }}
-                <ul class="list-disc ml-4">
-                  <li
-                    v-for="nace in naces"
-                    :key="nace"
-                  >
-                    {{ nace.NaceCode }}
-                  </li>
-                </ul>
-              </li>
+                {{ nace }}
+              </li><li />
             </ul>
           </div>
           <h2 class="h2-subtitle">
@@ -127,12 +119,11 @@
               :data="company.SubsidiesPerYearForChart"
             />
           </div>
-
           <div
-            v-for="subsidies, key in company.SubsidiesMapByYear"
-            :key="key"
+            v-for="(subsidies, year) in company.SubsidiesMapByYear"
+            :key="year"
           >
-            <h2>{{ key }}</h2>
+            <h2>{{ year }}</h2>
              
             <ul class="list-disc ml-4">
               <li
@@ -206,10 +197,7 @@ export default {
     };
   },
   computed: {
-    // join with a comma as separator
-    listDenominations: function () {
-      return this.company.Denominations.map(denomination => denomination.Denomination).join(' / ');
-    }
+
   },
   mounted () {
     this.getSubsidies();

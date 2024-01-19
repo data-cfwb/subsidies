@@ -10,6 +10,7 @@ import HomeLayout from './components/layouts/HomeLayout.vue';
 import AboutLayout from './components/layouts/AboutLayout.vue';
 import StatsLayout from './components/layouts/StatsLayout.vue';
 import SearchLayout from './components/layouts/SearchLayout.vue';
+import EntrepriseLayout from './components/layouts/EntrepriseLayout.vue';
 
 import './styles/base.css';
 
@@ -19,8 +20,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { 
-      path: '/entreprises/:be_number', 
+      path: '/', 
       component: HomeLayout,
+      meta: {
+        title: 'Accueil'
+      } 
+    },
+    { 
+      path: '/entreprises/:be_number', 
+      component: EntrepriseLayout,
       meta: {
         title: 'Organisation'
       } 

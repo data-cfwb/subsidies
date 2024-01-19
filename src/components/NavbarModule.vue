@@ -8,11 +8,15 @@
       <div class="flex h-16 justify-between">
         <div class="flex px-2 lg:px-0">
           <div class="flex flex-shrink-0 items-center">
-            <img
-              class="h-8 w-auto"
-              src="https://raw.githubusercontent.com/data-cfwb/subsidies/main/public/assets/logo_fwb_without_text.svg"
-              alt="Fédération Wallonie-Bruxelles"
+            <RouterLink
+              to="/"
             >
+              <img
+                class="h-8 w-auto"
+                src="https://raw.githubusercontent.com/data-cfwb/subsidies/main/public/assets/logo_fwb_without_text.svg"
+                alt="Fédération Wallonie-Bruxelles"
+              >
+            </RouterLink>
           </div>
           <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
@@ -23,7 +27,7 @@
               :exact-active-class="'inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'"
               class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
             >
-              Accueil
+              Organisme aléatoire
             </router-link>
             <router-link
               to="/statistiques"

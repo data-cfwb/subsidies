@@ -66,7 +66,7 @@ export default {
   watch: {
     search: function (newSearch) {
       if (newSearch.length > 2) {
-        axios.get('https://api.odwb.be/organisations/search/' + newSearch)
+        axios.get('https://be-companies.tintamarre.be/api/enterprises/lookup?name=' + newSearch)
           .then(response => {
             this.results = response.data;
           })
