@@ -13,9 +13,11 @@ module.exports = {
         'agc': '#E37276',
         'ags': '#ED9E41',
         'grey': '#4A5563',
+        // 
         'default-blue': '#303675',
         'light-blue': '#49508B',
         'dark-blue': '#2F3765',
+        // logo
         'logo-red': '#CB333B',
         'logo-yellow': '#F2A900',
         'logo-blue': '#001A70',

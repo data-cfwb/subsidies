@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 sm:px-0">
     <h3 class="text-base font-semibold leading-7 text-gray-900">
-      Résultats de la recherche pour "{{ results.input }}"
+      Résultats de la recherche pour "{{ results.input.name }}"
     </h3>
     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
       Il y a {{ results.results }} résultats.
@@ -18,7 +18,7 @@
           <RouterLink
             :to="/entreprises/ + company.EnterpriseNumber"
           >
-            {{ company.EnterpriseNumber }} - {{ company.denomination }}
+            {{ company.denomination }} {{ company.EnterpriseNumber }}
           </RouterLink>
         </dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
