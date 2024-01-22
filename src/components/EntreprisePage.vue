@@ -75,7 +75,7 @@
             <dt class="text-sm font-medium leading-6 text-gray-900">
               {{ values.activity }}<br>
               Code Nace: 
-              <RouterLink :to="'/naces/' + values.NaceCode">
+              <RouterLink :to="'/naces/' + values.NaceVersion + '/' + values.NaceCode">
                 {{ values.NaceCode }}
               </RouterLink> <br>
               Version Nace: {{ values.NaceVersion }}

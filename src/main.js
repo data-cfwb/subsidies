@@ -35,7 +35,7 @@ const router = createRouter({
       } 
     },
     { 
-      path: '/naces/:code_nace', 
+      path: '/naces/:category/:code', 
       component: NaceLayout,
       meta: {
         title: 'Activité'
