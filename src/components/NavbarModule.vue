@@ -73,6 +73,11 @@
                 @keyup.enter="redirectToSearch"
               >
             </div>
+            <!-- <div v-if="!isSearchLongEnough">
+              <p class="mt-2 text-sm text-gray-500">
+                Veuillez entrer au moins 4 caractères.
+              </p>
+            </div> -->
           </div>
         </div>
         <div class="flex items-center lg:hidden">
@@ -159,7 +164,11 @@ export default {
   computed: {
     search_url: function () {
       return '/search?name=' + this.search;
-    }
+    },
+    isSearchLongEnough:
+      function () {
+        return this.search.length > 3;
+      } 
   },
   methods: {
     redirectToSearch: function () {

@@ -11,6 +11,7 @@ import AboutLayout from './components/layouts/AboutLayout.vue';
 import StatsLayout from './components/layouts/StatsLayout.vue';
 import SearchLayout from './components/layouts/SearchLayout.vue';
 import EntrepriseLayout from './components/layouts/EntrepriseLayout.vue';
+import NaceLayout from './components/layouts/NaceLayout.vue';
 
 import './styles/base.css';
 
@@ -31,6 +32,13 @@ const router = createRouter({
       component: EntrepriseLayout,
       meta: {
         title: 'Organisation'
+      } 
+    },
+    { 
+      path: '/naces/:code_nace', 
+      component: NaceLayout,
+      meta: {
+        title: 'Activité'
       } 
     },
     { 

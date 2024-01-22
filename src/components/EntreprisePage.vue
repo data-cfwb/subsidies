@@ -74,7 +74,10 @@
           >
             <dt class="text-sm font-medium leading-6 text-gray-900">
               {{ values.activity }}<br>
-              Code Nace: {{ values.NaceCode }} <br>
+              Code Nace: 
+              <RouterLink :to="'/naces/' + values.NaceCode">
+                {{ values.NaceCode }}
+              </RouterLink> <br>
               Version Nace: {{ values.NaceVersion }}
             </dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
@@ -156,6 +159,26 @@
         <div class="mt-8 flow-root">
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <!-- <dl class="divide-y divide-gray-100">
+      <div
+        v-for="company in results.enterprises"
+        :key="company"
+        class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+      >
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          <RouterLink
+            :to="/entreprises/ + company.EnterpriseNumber"
+          >
+            {{ company.denomination }} {{ company.EnterpriseNumber }}
+          </RouterLink>
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          {{ company.juridical_form_cac_fr }} <br>
+          {{ company.addresses }} <br>
+          {{ company.type_entreprise_fr }}
+        </dd>
+      </div>
+    </dl> -->
               <table class="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr>
