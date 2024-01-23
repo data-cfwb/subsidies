@@ -54,8 +54,6 @@
       </ul>
     </div>
           
-
-
     <div>
       <div class="px-4 sm:px-0">
         <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
@@ -68,23 +66,27 @@
       <div class="mt-6 border-t border-gray-100">
         <dl class="divide-y divide-gray-100">
           <div
-            v-for="(values, key) in ActivitiesMap"
-            :key="key"
+            v-for="activityKey in ActivitiesMap"
+            :key="activityKey"
             class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
           >
             <dt class="text-sm font-medium leading-6 text-gray-900">
-              {{ values.activity }}<br>
-              Code Nace: 
-              <RouterLink :to="'/naces/' + values.NaceVersion + '/' + values.NaceCode">
-                {{ values.NaceCode }}
-              </RouterLink> <br>
-              Version Nace: {{ values.NaceVersion }}
+              {{ activityKey.activity }}
             </dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <h4 class="text-sm font-medium leading-6 text-gray-900">
                 Description
               </h4>
-              {{ joinOnKey(values.labels, 'Description') }}
+              <div
+                v-for="activity in activityKey.labels"
+                :key="activity"
+              >
+                <RouterLink :to="'/naces/' + activity.NaceVersion + '/' + activity.NaceCode">
+                  {{ activity.NaceCode }} (version {{ activity.NaceVersion }})
+                </RouterLink> <br>
+   
+                {{ joinOnKey(activity.labels, 'Description') }}
+              </div>
             </dd>
           </div>
         </dl>
@@ -289,12 +291,19 @@ export default {
   },
   computed: {
     ActivitiesMap: function () {
-      return this.company.Activities.reduce((map, obj) => {
-        map[obj.activity] = obj;
-        return map;
-      }, {});
+      // group activities by activity
+      let activities = {};
+      this.company.Activities.forEach(activity => {
+        if (!activities[activity.activity]) {
+          activities[activity.activity] = {
+            activity: activity.activity,
+            labels: []
+          };
+        }
+        activities[activity.activity].labels.push(activity);
+      });
+      return activities;
     }
-
 
   },
   mounted () {
