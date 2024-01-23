@@ -32,7 +32,8 @@ const router = createRouter({
       component: EntrepriseLayout,
       meta: {
         title: 'Organisation'
-      } 
+      },
+      props: route => ({ beNumber: route.params.be_number })
     },
     { 
       path: '/naces/:category/:code', 
@@ -45,10 +46,10 @@ const router = createRouter({
     { 
       path: '/search',
       component: SearchLayout,
-      props: route => ({ searchName: route.query.name }),
       meta: {
         title: 'Recherche'
-      } 
+      },
+      props: route => ({ searchName: route.query.name })
     },
     { 
       path: '/statistiques', 

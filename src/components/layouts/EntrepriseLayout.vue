@@ -1,6 +1,6 @@
 <template>
   <EntreprisePage
-    :be-number="$route.params.be_number"
+    :be-number="beNumber"
   />
 </template>
   
@@ -10,6 +10,12 @@ import EntreprisePage from '../EntreprisePage.vue';
 export default {
   components: {
     EntreprisePage
+  },
+  props: {
+    beNumber: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>
