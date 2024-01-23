@@ -9,6 +9,9 @@
     Montants subventionnés sur le secteur {{ insights.code.Description }}: {{ insights.subsidies_total }}<br>
     {{ insights.top_20 }}
   </div>
+  <div v-else>
+    <LoadingFwb />
+  </div>
 </template>
   
 <script>
@@ -36,7 +39,7 @@ export default {
   },
   methods: {
     getNaceData () {
-      axios.get(`https://be-companies.tintamarre.be/api/codes/Nace${this.category}/${this.code}/FR/insights`)
+      axios.get(`https://be-companies.tintamarre.be/api/codes/${this.category}/${this.code}/FR/insights`)
         .then(response => {
           this.insights = response.data;
           this.data_loaded = true;
