@@ -2,8 +2,6 @@ import { createApp } from 'vue';
 import { createRouter } from 'vue-router';
 import { createWebHistory } from 'vue-router';
 
-import './utils/helpers.js';
-
 import {nextTick} from 'vue';
 
 import App from './App.vue';
