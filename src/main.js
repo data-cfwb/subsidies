@@ -39,7 +39,8 @@ const router = createRouter({
       component: NaceLayout,
       meta: {
         title: 'Activité'
-      } 
+      },
+      props: route => ({ category: route.params.category, code: route.params.code })
     },
     { 
       path: '/search',
