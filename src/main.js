@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import { createRouter } from 'vue-router';
 import { createWebHistory } from 'vue-router';
 
+import './utils/helpers.js';
+
 import {nextTick} from 'vue';
 
 import App from './App.vue';
@@ -12,6 +14,9 @@ import StatsLayout from './components/layouts/StatsLayout.vue';
 import SearchLayout from './components/layouts/SearchLayout.vue';
 import EntrepriseLayout from './components/layouts/EntrepriseLayout.vue';
 import NaceLayout from './components/layouts/NaceLayout.vue';
+
+import LoadingFwb from './components/partials/LoadingFwb.vue';
+import headerPartial from './components/partials/headerPartial.vue';
 
 import './styles/base.css';
 
@@ -77,5 +82,16 @@ router.afterEach((to) => {
 });
 
 const app = createApp(App);
+
+app.config.globalProperties.$filters = {
+  formatToEuros(value) {
+    if (!value) return '';
+    return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
+  }
+};
+
+app.component('LoadingFwb', LoadingFwb);
+app.component('HeaderPartial', headerPartial);
+
 app.use(router);
 app.mount('#app');

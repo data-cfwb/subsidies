@@ -1,24 +1,34 @@
 <template>
-  <div>
-    <dl
-      v-if="data_loaded"
-      class="mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-3 md:divide-x md:divide-y-0"
-    >
-      <div
-        v-for="item in stats"
-        :key="item.name"
-        class="px-4 py-5 sm:p-6"
-      >
-        <dt class="text-base font-normal text-gray-900">
-          {{ item.name }}
-        </dt>
-        <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
-          <div class="flex items-baseline text-2xl font-semibold text-dark-blue">
-            {{ item.stat }} <span class="ml-2 text-sm font-medium text-gray-500">{{ item.unit }}</span>
+  <div v-if="data_loaded">
+    <HeaderPartial
+      :title="'Accueil'"
+    />
+    <main>
+      <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
+        <dl
+        
+          class="mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-3 md:divide-x md:divide-y-0"
+        >
+          <div
+            v-for="item in stats"
+            :key="item.name"
+            class="px-4 py-5 sm:p-6"
+          >
+            <dt class="text-base font-normal text-gray-900">
+              {{ item.name }}
+            </dt>
+            <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
+              <div class="flex items-baseline text-2xl font-semibold text-dark-blue">
+                {{ item.stat }} <span class="ml-2 text-sm font-medium text-gray-500">{{ item.unit }}</span>
+              </div>
+            </dd>
           </div>
-        </dd>
+        </dl>
       </div>
-    </dl>
+    </main>
+  </div>
+  <div v-else>
+    <LoadingFwb />
   </div>
 </template>
 
@@ -26,9 +36,10 @@
 <script>
 import axios from 'axios';
 
-// const 
-
 export default {
+  components: {
+
+  },
   data () {
     return {
       results: {},

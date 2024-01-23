@@ -1,6 +1,9 @@
 <template>
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
-    <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+  <HeaderPartial
+    :title="'À propos'"
+  />
+  <main>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
       <p class="text-base font-semibold leading-7 text-gray-400 uppercase">
         Données ouvertes & applicatifs libres
       </p>
@@ -54,5 +57,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
