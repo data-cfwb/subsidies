@@ -19,7 +19,7 @@
             </dt>
             <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
               <div class="flex items-baseline text-2xl font-semibold text-dark-blue">
-                {{ item.stat }} <span class="ml-2 text-sm font-medium text-gray-500">{{ item.unit }}</span>
+                {{ $filters.numberFormatRound(item.stat) }} <span class="ml-2 text-sm font-medium text-gray-500">{{ item.unit }}</span>
               </div>
             </dd>
           </div>

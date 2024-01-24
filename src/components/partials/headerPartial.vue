@@ -7,6 +7,7 @@
       <p class="mt-0 text-base text-gray-500">
         {{ subtitle }}
       </p>
+      <slot />
     </div>
   </header>
 </template>

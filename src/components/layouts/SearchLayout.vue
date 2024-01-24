@@ -24,7 +24,7 @@
             <dt class="text-sm font-medium leading-6 text-gray-900">
               {{ company.denomination }}<br>
               <RouterLink
-                :to="/entreprises/ + company.EnterpriseNumber"
+                :to="/enterprises/ + company.EnterpriseNumber"
               >
                 {{ company.EnterpriseNumber }}
               </RouterLink>

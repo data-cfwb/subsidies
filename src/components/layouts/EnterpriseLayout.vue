@@ -1,13 +1,13 @@
 <template>
   <div v-if="data_loaded">
     <HeaderPartial
-      :title="joinOnKey(company.Denominations, 'Denomination')"
+      :title="$filters.joinOnKey(company.Denominations, 'Denomination')"
     />
     <main>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
-        <div class="companyNumber">
+        <div>
           <RouterLink
-            :to="/entreprises/ + company.EnterpriseNumber"
+            :to="/enterprises/ + company.EnterpriseNumber"
           >
             {{ company.EnterpriseNumberBE }}
           </RouterLink>
@@ -87,7 +87,7 @@
                       {{ activity.NaceCode }} (version {{ activity.NaceVersion }})
                     </RouterLink> <br>
    
-                    {{ joinOnKey(activity.labels, 'Description') }}
+                    {{ $filters.joinOnKey(activity.labels, 'Description') }}
                   </div>
                 </dd>
               </div>
@@ -99,13 +99,13 @@
           Status
         </h2>
         <div>
-          {{ joinOnKey(company.StatusLabel, 'Description') }}
+          {{ $filters.joinOnKey(company.StatusLabel, 'Description') }}
         </div>
         <div>
-          {{ joinOnKey(company.JuridicalSituationLabel, 'Description') }}
+          {{ $filters.joinOnKey(company.JuridicalSituationLabel, 'Description') }}
         </div>
         <div>
-          {{ joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
+          {{ $filters.joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
         </div>
 
         {{ company.TypeEntrepriseLabel }}
@@ -171,7 +171,7 @@
       >
         <dt class="text-sm font-medium leading-6 text-gray-900">
           <RouterLink
-            :to="/entreprises/ + company.EnterpriseNumber"
+            :to="/enterprises/ + company.EnterpriseNumber"
           >
             {{ company.denomination }} {{ company.EnterpriseNumber }}
           </RouterLink>
@@ -323,9 +323,6 @@ export default {
     );
   },
   methods: {
-    joinOnKey: function (array, key) {
-      return array.map(item => item[key]).join(' / ');
-    },
     getSubsidies: function () {
       axios.get('https://be-companies.tintamarre.be/api/enterprises/' + this.beNumber)
         .then(response => {

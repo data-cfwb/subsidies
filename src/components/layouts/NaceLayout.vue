@@ -11,14 +11,14 @@
               {{ insights.code.Description }}
             </h3>
             <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-              Détails sur le secteur "{{ insights.code.Description }}" en Belgique référencé par la Banque Carrefour des Entreprises (BCE) sous le code NACE {{ insights.code.Code }} ({{ insights.code.Category }}).
+              Détails sur le secteur "{{ insights.code.Description }}" en Belgique référencé par la Banque Carrefour des Enterprises (BCE) sous le code NACE {{ insights.code.Code }} ({{ insights.code.Category }}).
             </p>
           </div>
           <div class="mt-6 border-t border-gray-100">
             <dl class="divide-y divide-gray-100">
               <div class="px-2 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-12 text-gray-900">
-                  Nombre d'entreprises dans le secteur en tant que code principal ou secondaire
+                  Nombre d'enterprises dans le secteur en tant que code principal ou secondaire
                 </dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 text-right">
                   {{ insights.enterprises_total }}
@@ -26,7 +26,7 @@
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-gray-900">
-                  Nombre d'entreprises dans le secteur subventionnées par la Fédération Wallonie-Bruxelles
+                  Nombre d'enterprises dans le secteur subventionnées par la Fédération Wallonie-Bruxelles
                 </dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 text-right">
                   {{ insights.enterprises_subsidized }} ({{ Math.round(insights.enterprises_subsidized / insights.enterprises_total * 100) }}%)
@@ -55,7 +55,7 @@
               <dt class="text-sm font-medium leading-6 text-gray-900">
                 {{ subsidy.denomination }} <br>
                 <RouterLink
-                  :to="/entreprises/ + subsidy.EnterpriseNumber"
+                  :to="/enterprises/ + subsidy.EnterpriseNumber"
                 >
                   {{ subsidy.EnterpriseNumber }}
                 </RouterLink>
