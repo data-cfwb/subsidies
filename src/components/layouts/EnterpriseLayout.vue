@@ -7,70 +7,46 @@
     />
 
     <main>
-      <!-- {{ company.Languages }} -->
-     
-      <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
-        <div>
-          <RouterLink
-            :to="/enterprises/ + company.EnterpriseNumber"
-          >
-            {{ company.EnterpriseNumberBE }}
-          </RouterLink>
-        </div>            
-        
-        <h2>
-          Adresse(s)
-        </h2>
-        <div>
-          <ul>
-            <li
-              v-for="address in company.Addresses"
-              :key="address"
+      <!-- 3 column wrapper -->
+      <div class="mx-auto w-full max-w-7xl grow lg:flex xl:px-2">
+        <!-- Left sidebar & main wrapper -->
+        <div class="flex-1 xl:flex">
+          <div class="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
+            <!-- Left column area -->
+            <RouterLink
+              :to="/enterprises/ + company.EnterpriseNumber"
             >
-              {{ address.StreetFR }} {{ address.HouseNumber }} {{ address.Box }}
-              <br>
-              {{ address.Zipcode }} {{ address.MunicipalityFR }}
-            </li>
-          </ul>
-        </div>
+              {{ company.EnterpriseNumberBE }}
+            </RouterLink>
 
-        <h2>
-          Contacts
-        </h2>
-        <div>
-          <ul>
-            <li
-              v-for="contact in company.Contacts"
-              :key="contact"
-            >
-              {{ contact.ContactType }}: 
-              <span v-if="contact.ContactType == 'EMAIL'">
-                <a
-                  :href="'mailto:' + contact.Value"
-                >{{ contact.Value }}</a>
-              </span>
-              <span v-if="contact.ContactType == 'WEB'"><a
-                :href="'https://' + contact.Value"
-              >{{ contact.Value }}</a>
-              </span>
-              <span v-if="contact.ContactType == 'TEL'"><a
-                :href="'tel:' + contact.Value"
-              >{{ contact.Value }}</a>
-              </span>
-            </li>
-          </ul>
-        </div>
-          
-        <div>
-          <div class="px-4 sm:px-0">
+
+            <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
+              Status
+            </h2>
+            <div>
+              {{ $filters.joinOnKey(company.StatusLabel, 'Description') }}
+            </div>
+            <div>
+              {{ $filters.joinOnKey(company.JuridicalSituationLabel, 'Description') }}
+            </div>
+            <div>
+              {{ $filters.joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
+            </div>
+
+            {{ company.TypeEntrepriseLabel }}
+            {{ company.Languages }}
+          </div>
+
+          <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
+            <!-- Main area -->
+
             <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
               Activités
             </h3>
             <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
               Liste des codes NACE de l'organisation
             </p>
-          </div>
-          <div class="mt-6 border-t border-gray-100">
+
             <dl class="divide-y divide-gray-100">
               <div
                 v-for="activityKey in ActivitiesMap"
@@ -100,22 +76,56 @@
           </div>
         </div>
 
-        <h2>
-          Status
-        </h2>
-        <div>
-          {{ $filters.joinOnKey(company.StatusLabel, 'Description') }}
-        </div>
-        <div>
-          {{ $filters.joinOnKey(company.JuridicalSituationLabel, 'Description') }}
-        </div>
-        <div>
-          {{ $filters.joinOnKey(company.JuridicalFormCACLabel, 'Description') }}
-        </div>
+        <div class="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+          <!-- Right column area -->
 
-        {{ company.TypeEntrepriseLabel }}
 
-        <h2>
+          <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase">
+            Contacts
+          </h2>
+          <div>
+            <ul>
+              <li
+                v-for="contact in company.Contacts"
+                :key="contact"
+              >
+                {{ contact.ContactType }}: 
+                <span v-if="contact.ContactType == 'EMAIL'">
+                  <a
+                    :href="'mailto:' + contact.Value"
+                  >{{ contact.Value }}</a>
+                </span>
+                <span v-if="contact.ContactType == 'WEB'"><a
+                  :href="'https://' + contact.Value"
+                >{{ contact.Value }}</a>
+                </span>
+                <span v-if="contact.ContactType == 'TEL'"><a
+                  :href="'tel:' + contact.Value"
+                >{{ contact.Value }}</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
+            Adresse(s)
+          </h3>
+          <ul>
+            <li
+              v-for="address in company.Addresses"
+              :key="address"
+            >
+              {{ address.StreetFR }} {{ address.HouseNumber }} {{ address.Box }}
+              <br>
+              {{ address.Zipcode }} {{ address.MunicipalityFR }}
+            </li>
+          </ul>
+        </div>
+      </div>
+ 
+      <!-- {{ company.Languages }} -->
+      <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
+        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Subsidies
         </h2>
         <div>
@@ -149,111 +159,24 @@
             :data="company.SubsidiesPerYearForChart"
           />
         </div>
-        <div
-          v-for="(subsidies, year) in company.SubsidiesMapByYear"
-          :key="year"
-        >
-          <div class="px-4 sm:px-6 lg:px-8">
-            <div class="sm:flex sm:items-center">
-              <div class="sm:flex-auto">
-                <h1 class="text-base font-semibold leading-6 text-gray-900">
-                  {{ year }}
-                </h1>
-                <p class="mt-2 text-sm text-gray-700">
-                  La liste des subventions pour l'année {{ year }}.
-                </p>
-              </div>
-              <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none" />
-            </div>
-            <div class="mt-8 flow-root">
-              <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                  <!-- <dl class="divide-y divide-gray-100">
-      <div
-        v-for="company in results.enterprises"
-        :key="company"
-        class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-      >
-        <dt class="text-sm font-medium leading-6 text-gray-900">
-          <RouterLink
-            :to="/enterprises/ + company.EnterpriseNumber"
-          >
-            {{ company.denomination }} {{ company.EnterpriseNumber }}
-          </RouterLink>
-        </dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-          {{ company.juridical_form_cac_fr }} <br>
-          {{ company.addresses }} <br>
-          {{ company.type_entreprise_fr }}
-        </dd>
-      </div>
-    </dl> -->
-                  <table class="min-w-full divide-y divide-gray-300">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 text-right"
-                        >
-                          Montant
-                        </th>
-                        <th
-                          scope="col"
-                          class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Compétence (Ministre)
-                        </th>
-                        <th
-                          scope="col"
-                          class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Nom de l'administration et base légale
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                      <tr
-                        v-for="subsidy in subsidies"
-                        :key="subsidy"
-                      >
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
-                          {{ $filters.formatToEuros(subsidy.AmountInEuros) }}
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <span class="text-sm">{{ subsidy.Compétence }} 
-                            <br>
-                            {{ subsidy.MinistreName }}
-                          </span>
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <br>
-                          {{ subsidy.AdministrationName }}<br>
-                          {{ subsidy.LegalBasis }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!--          
-    <h2>
-      Establishments
-    </h2>
-    <div>
-      <ul>
-        <li
-          v-for="estab in company.Establishments"
-          :key="estab"
-        >
-          {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
-        </li>
-      </ul>
-    </div> -->
-        <h2>
+        <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
+
+  
+        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
+          Establishments
+        </h2>
+        <div>
+          <ul>
+            <li
+              v-for="estab in company.Establishments"
+              :key="estab"
+            >
+              {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
+            </li>
+          </ul>
+        </div>
+        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Liens externes
         </h2>
         <ul class="list-disc">
@@ -280,10 +203,12 @@
 import axios from 'axios';
 
 import BarChart from '../charts/BarChart.vue';
+import SubidiesTable from '../partials/SubdidiesTable.vue';
 
 export default {
   components: {
-    BarChart
+    BarChart,
+    SubidiesTable
   },
   props: {
     beNumber: {
