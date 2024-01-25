@@ -3,50 +3,12 @@
     v-if="data_loaded"
   >
     <HeaderPartial
-     
       :title="$filters.joinOnKey(company.Denominations, 'Denomination')"
     />
 
     <main>
-      {{ company.languages }}
-      <!-- Main 3 column grid -->
-      <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
-        <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
-          <section aria-labelledby="section-1-title">
-            <h2
-              id="section-1-title"
-              class="sr-only"
-            >
-              Section title
-            </h2>
-            <div class="overflow-hidden rounded-lg bg-white shadow">
-              <div class="p-6">
-                <!-- Your content -->
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, eaque inventore error animi quaerat, nesciunt iusto sapiente voluptatibus, officiis cum asperiores? Iste quisquam sunt sequi minima vitae cupiditate dolores aspernatur?
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Right column -->
-        <div class="grid grid-cols-1 gap-4">
-          <section aria-labelledby="section-2-title">
-            <h2
-              id="section-2-title"
-              class="sr-only"
-            >
-              Section title
-            </h2>
-            <div class="overflow-hidden rounded-lg bg-white shadow">
-              <div class="p-6">
-                <!-- Your content -->
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, eaque inventore error animi quaerat, nesciunt iusto sapiente voluptatibus, officiis cum asperiores? Iste quisquam sunt sequi minima vitae cupiditate dolores aspernatur?
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+      <!-- {{ company.Languages }} -->
+     
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
         <div>
           <RouterLink

@@ -4,7 +4,7 @@
   />
   <main>
     <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
-      <p class="text-base font-semibold leading-7 text-gray-400 uppercase">
+      <p class="text-base font-semibold leading-7 text-gray-500 uppercase">
         Données ouvertes & applicatifs libres
       </p>
       <div class="mt-10 grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-700 lg:max-w-none lg:grid-cols-2">
@@ -24,6 +24,9 @@
               target="_blank"
             >banque carrefour des entreprises</a>.
           </p>
+          <p>
+            Chaque jeu de donnée est soumis à une licence spécifique. Veuillez-vous référer à la page de chaque jeu de données pour plus d'informations.
+          </p>
           <p class="mt-4">
             Les données sont mises à disposition via  <a
               href="https://github.com/data-cfwb/BE_companies_api"
@@ -31,7 +34,7 @@
           </p>
         </div>
       </div>
-      <p class="text-base font-semibold leading-7 text-gray-400 uppercase mt-16">
+      <p class="text-base font-semibold leading-7 text-gray-500 uppercase mt-16">
         Clause de non-responsabilité
       </p>
       <div class="mt-10 grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-700 lg:max-w-none lg:grid-cols-2">
