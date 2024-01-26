@@ -7,6 +7,21 @@
       <p class="mt-0 text-base text-gray-500">
         {{ subtitle }}
       </p>
+
+      <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          {{ attrib1 }}
+        </div>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          {{ attrib2 }}
+        </div>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          {{ attrib3 }}
+        </div>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          {{ attrib4 }}
+        </div>
+      </div>
       <slot />
     </div>
   </header>
@@ -23,7 +38,28 @@ export default {
       type: String,
       required: false,
       default: ''
-    }
+    },
+    attrib1: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    attrib2: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    attrib3: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    attrib4: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
   },
  
 };
