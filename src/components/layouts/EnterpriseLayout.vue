@@ -147,6 +147,21 @@
             </li>
           </ul>
         </div> -->
+
+        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
+          Sources de données
+        </h2>
+        <ul class="list-disc">
+          <li
+            v-for="key, link in company.DataSourcesLinks"
+            :key="link"
+          >
+            <a
+              :href="key.href"
+              target="_blank"
+            >{{ key.service_name }}</a>
+          </li>
+        </ul>
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Liens externes
         </h2>

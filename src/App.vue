@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-50">
+  <div>
     <NavbarModule />
 
     <div class="py-10">

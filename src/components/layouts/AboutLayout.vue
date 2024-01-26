@@ -2,7 +2,7 @@
   <HeaderPartial
     title="À propos"
   />
-  <main>
+  <main class="">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
       <p class="text-base font-semibold leading-7 text-gray-500 uppercase">
         Données ouvertes & applicatifs libres
