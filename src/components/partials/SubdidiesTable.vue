@@ -54,7 +54,7 @@
                   :key="subsidy"
                 >
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
-                    <ImgLogoCompetence :competence="subsidy.Compétence" />
+                    <ImgLogoCompetence :administration-name="subsidy.AdministrationName" />
                   </td>
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
                     {{ $filters.formatToEuros(subsidy.AmountInEuros) }}

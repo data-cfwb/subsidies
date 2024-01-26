@@ -10,7 +10,7 @@
 export default {
   props:
     {
-      competence: {
+      administrationName: {
         type: String,
         required: true
       },
@@ -22,15 +22,18 @@ export default {
   },
   computed: {
     url: function () {
-      if (this.competence === 'Education') {
-        return this.prefix_url + 'ENS' + '24.svg';
-      } else if (this.competence === 'Culture') {
+
+      if (this.administrationName.includes(' AGC ')) {
         return this.prefix_url + 'CULT' + '24.svg';
-      } else if (this.competence === 'Jeunesse') {
+      } else if (this.administrationName.includes(' AGAJ ')) {
         return this.prefix_url + 'AJ' + '24.svg';
-      } else if (this.competence === 'Sport') {
+      } else if (this.administrationName.includes(' AGS ')) {
         return this.prefix_url + 'Adeps' + '24.svg';
-      } else if (this.competence === 'Recherche') {
+      } else if (this.administrationName.includes(' AGE ')) {
+        return this.prefix_url + 'ENS' + '24.svg';
+      } else if (this.administrationName.includes(' AGMJ ')) {
+        return this.prefix_url + 'MJ' + '24.svg';
+      } else if (this.administrationName.includes(' RS ')) {
         return this.prefix_url + 'RS' + '24.svg';
       } else 
         return 'https://raw.githubusercontent.com/data-cfwb/charte-graphique/main/pastilles_SVG/logo_FWB_coul.svg';
