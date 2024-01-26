@@ -9,16 +9,16 @@
       </p>
 
       <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-        <div class="mt-2 flex items-center text-sm text-gray-500">
+        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
           {{ attrib1 }}
         </div>
-        <div class="mt-2 flex items-center text-sm text-gray-500">
+        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
           {{ attrib2 }}
         </div>
-        <div class="mt-2 flex items-center text-sm text-gray-500">
+        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
           {{ attrib3 }}
         </div>
-        <div class="mt-2 flex items-center text-sm text-gray-500">
+        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
           {{ attrib4 }}
         </div>
       </div>

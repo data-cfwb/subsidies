@@ -12,9 +12,9 @@
     />
 
     <main>
-      <!-- 3 column wrapper -->
+      <!-- 2 column wrapper -->
       <div class="mx-auto w-full max-w-7xl grow lg:flex xl:px-2">
-        <!-- Left sidebar & main wrapper -->
+        <!-- main wrapper -->
         <div class="flex-1 xl:flex">
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <!-- Main area -->
@@ -76,6 +76,15 @@
               <br>
               {{ address.Zipcode }} {{ address.MunicipalityFR }}
             </li>
+
+            <a
+              type="button"
+              class="rounded bg-gray-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+              :href="'https://www.openstreetmap.org/search?query=' + company.Addresses[0].StreetFR + ' ' + company.Addresses[0].HouseNumber + ' ' + company.Addresses[0].Zipcode + ' ' + company.Addresses[0].MunicipalityFR"
+              target="_blank"
+            >
+              Voir sur une carte
+            </a>
           </ul>
         </div>
       </div>
