@@ -37,7 +37,7 @@
                 class="px-4 py-5 sm:p-6"
               >
                 <dt class="text-base font-normal text-gray-900">
-                  Organisations du secteur subventionnées par la FWB
+                  Organisations subventionnées par la FWB dans le secteur
                 </dt>
                 <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
                   <div class="flex items-baseline text-2xl font-semibold text-dark-blue">

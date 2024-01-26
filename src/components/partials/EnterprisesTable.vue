@@ -3,8 +3,16 @@
     <h2 class="text-base font-semibold leading-6 text-gray-900 uppercase">
       Liste des organisations subventionnées
     </h2>
+ 
 
     <div class="mt-8 flow-root">
+      <button
+        type="button"
+        class="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+        @click="downloadCsv(enterprises)"
+      >
+        💾 Télécharger
+      </button>
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
@@ -95,7 +103,46 @@ export default {
         type: Object,
         required: true
       },
-    
-    }
+    },
+  methods: {
+    convertToCSV(objArray) {
+      const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+      let str = '';
+
+      for (let i = 0; i < array.length; i += 1) {
+        let line = '';
+        for (const index in array[i]) {
+          if (line !== '') line += ',';
+
+          line += '"' + array[i][index] + '"';
+        }
+
+        str += `${line}\r\n`;
+      }
+
+      return str;
+    },
+    downloadCsv(data) {
+      const csv = this.convertToCSV(data);
+      const exportedFilename = 'export.csv';
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, exportedFilename);
+      } else {
+        const link = document.createElement('a');
+        if (link.download !== undefined) { // feature detection
+          // Browsers that support HTML5 download attribute
+          const url = URL.createObjectURL(blob);
+          link.setAttribute('href', url);
+          link.setAttribute('download', exportedFilename);
+          link.style.visibility = 'hidden';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      }
+    },
+  },
+
 };
 </script>
