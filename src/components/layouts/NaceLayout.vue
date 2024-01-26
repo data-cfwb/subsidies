@@ -63,8 +63,14 @@
             </dl>
           </div>
         </div>
-        <EnterprisesTable :enterprises="insights.all_enterprises" />
-    
+
+        <div class="mt-6 border-t border-gray-100">
+          <h2 class="text-base font-semibold leading-6 text-gray-900 uppercase">
+            Liste des organisations du secteur "{{ insights.code.Description }}" subventionnées
+            par la Fédération Wallonie-Bruxelles (FWB)
+          </h2>
+          <EnterprisesTable :enterprises="insights.all_enterprises" />
+        </div>
       
         <!-- <PieChart /> -->
       </div>
