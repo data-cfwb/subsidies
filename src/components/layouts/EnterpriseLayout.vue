@@ -40,6 +40,7 @@
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <!-- Main area -->
             <ActivitiesList
+              v-if="company.Activities.length"
               :activities-per-type="ActivitiesMap"
             />
           </div>
