@@ -21,7 +21,7 @@
                 scope="col"
                 class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
-                Version
+                Version NACE
               </th>
               <th
                 scope="col"
@@ -55,7 +55,7 @@
                   </RouterLink> 
                 </td>
                 <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
-                  Nace{{ activity.NaceVersion }}
+                  {{ activity.NaceVersion }}
                 </td>
                 <td class="px-3 py-1 text-sm text-gray-500">
                   {{ $filters.getTranslation(activity.labels, 'FR') }}
