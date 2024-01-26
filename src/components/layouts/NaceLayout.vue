@@ -63,33 +63,9 @@
             </dl>
           </div>
         </div>
-
+        <EnterprisesTable :enterprises="insights.all_enterprises" />
     
-        <div class="mt-6 border-t border-gray-100">
-          <h2 class="text-base font-semibold leading-6 text-gray-900 uppercase">
-            Liste des organisations subventionnées
-          </h2>
-          <dl class="divide-y divide-gray-100">
-            <div
-              v-for="subsidy in insights.all_enterprises"
-              :key="subsidy"
-              class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-            >
-              <dt class="text-sm font-medium leading-6 text-gray-900">
-                {{ subsidy.denomination }} <br>
-                <RouterLink
-                  :to="/enterprises/ + subsidy.EnterpriseNumber"
-                >
-                  {{ subsidy.EnterpriseNumber }}
-                </RouterLink>
-              </dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 align-right">
-                {{ $filters.formatToEuros(subsidy.subsidies_sum) }}
-              </dd>
-            </div>
-          </dl>
-        </div>
-
+      
         <!-- <PieChart /> -->
       </div>
     </main>
@@ -101,11 +77,12 @@
   
 <script>
 import axios from 'axios';
+import EnterprisesTable from '../partials/EnterprisesTable.vue';
 // import PieChart from '../charts/PieChart.vue';
 
 export default {
   components: {
-
+    EnterprisesTable
     // PieChart
   },
   props: {
