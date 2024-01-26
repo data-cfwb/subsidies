@@ -14,11 +14,11 @@ const app = createApp(App);
 
 app.config.globalProperties.$filters = {
   formatToEuros(value) {
-    if (!value) return '';
+    if (!value) return '0 €';
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value);
   },
   numberFormatRound(value) {
-    if (!value) return '';
+    if (!value) return '0';
     return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(value);
   },
   joinOnKey: (array, key) => array.map(item => item[key]).join(' / '),
