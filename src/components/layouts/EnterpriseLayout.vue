@@ -39,48 +39,19 @@
 
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <!-- Main area -->
-
-            <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
-              Activités
-            </h3>
-            <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-              Liste des codes NACE de l'organisation
-            </p>
-
-            <dl class="divide-y divide-gray-100">
-              <div
-                v-for="activityKey in ActivitiesMap"
-                :key="activityKey"
-                class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-              >
-                <dt class="text-sm font-medium leading-6 text-gray-900">
-                  {{ activityKey.activity }}
-                </dt>
-                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  <h4 class="text-sm font-medium leading-6 text-gray-900">
-                    Description
-                  </h4>
-                  <div
-                    v-for="activity in activityKey.labels"
-                    :key="activity"
-                  >
-                    <RouterLink :to="'/naces/' + activity.NaceVersion + '/' + activity.NaceCode">
-                      {{ activity.NaceCode }} (version {{ activity.NaceVersion }})
-                    </RouterLink> <br>
-   
-                    {{ $filters.joinOnKey(activity.labels, 'Description') }}
-                  </div>
-                </dd>
-              </div>
-            </dl>
+            <ActivitiesList
+              :activities-per-type="ActivitiesMap"
+            />
           </div>
         </div>
 
         <div class="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
           <!-- Right column area -->
 
-
-          <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase">
+          <h2
+            v-if="company.Contacts.length"
+            class="text-base font-semibold leading-7 text-gray-900 uppercase py-3"
+          >
             Contacts
           </h2>
           <div>
@@ -107,7 +78,7 @@
             </ul>
           </div>
 
-          <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase">
+          <h3 class="text-base font-semibold leading-7 text-gray-900 uppercase py-3">
             Adresse(s)
           </h3>
           <ul>
@@ -126,7 +97,7 @@
       <!-- {{ company.Languages }} -->
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
-          Subsidies
+          Subventions octroyées par la Fédération Wallonie-Bruxelles
         </h2>
         <div>
           <table class="table-auto">
@@ -162,9 +133,11 @@
 
         <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
-  
-        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
-          Establishments
+        <!-- <h2
+          v-if="company.Establishments"
+          class="text-base font-semibold leading-8 text-gray-900 uppercase"
+        >
+          Établissements
         </h2>
         <div>
           <ul>
@@ -172,10 +145,11 @@
               v-for="estab in company.Establishments"
               :key="estab"
             >
+              {{ estab }}
               {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
             </li>
           </ul>
-        </div>
+        </div> -->
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Liens externes
         </h2>
@@ -204,11 +178,13 @@ import axios from 'axios';
 
 import BarChart from '../charts/BarChart.vue';
 import SubidiesTable from '../partials/SubdidiesTable.vue';
+import ActivitiesList from '../partials/ActivitiesList.vue';
 
 export default {
   components: {
     BarChart,
-    SubidiesTable
+    SubidiesTable,
+    ActivitiesList
   },
   props: {
     beNumber: {

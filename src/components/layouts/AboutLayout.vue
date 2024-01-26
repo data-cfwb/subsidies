@@ -39,7 +39,9 @@
       </p>
       <div class="mt-10 grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-700 lg:max-w-none lg:grid-cols-2">
         <div>
-          <p class="mt-4" />
+          <!-- <p class="mt-4">
+            https://economie.fgov.be/sites/default/files/Files/Entreprises/BCE/Licence-BCE-Open-Data-Conditions-d-utilisation.pdf
+          </p> -->
           <p class="mt-4">
             Les données présentes à travers cette interface sont fournies à titre indicatif et ne peuvent être considérées comme exhaustives.
           </p>
