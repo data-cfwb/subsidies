@@ -23,7 +23,7 @@
         </p>
         <img
           src="https://raw.githubusercontent.com/data-cfwb/charte-graphique/main/pastilles_SVG/logo_FWB_coul.svg"
-          alt=""
+          alt="Fédération Wallonie-Bruxelles"
         >
       </div>
     </div>

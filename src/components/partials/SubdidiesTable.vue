@@ -23,6 +23,12 @@
                 <tr>
                   <th
                     scope="col"
+                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                  >
+                    Logo
+                  </th>
+                  <th
+                    scope="col"
                     class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 text-right"
                   >
                     Montant
@@ -31,7 +37,8 @@
                     scope="col"
                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Compétence (Ministre)
+                    Compétence <br> 
+                    <span class="text-gray-600">Ministre</span>
                   </th>
                   <th
                     scope="col"
@@ -47,18 +54,36 @@
                   :key="subsidy"
                 >
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
+                    <ImgLogoCompetence :competence="subsidy.Compétence" />
+                  </td>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
                     {{ $filters.formatToEuros(subsidy.AmountInEuros) }}
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                      <div
+                        class="bg-blue-900 h-2.5 rounded-full"
+                        :style="'width:' + percentageOfMax(subsidy, subsidies) + '%'"
+                      />
+                    </div>
                   </td>
                   <td class="px-3 py-4 text-sm text-gray-500">
-                    <span class="text-sm">{{ subsidy.Compétence }} 
-                      <br>
-                      {{ subsidy.MinistreName }}
-                    </span>
+                    <ul>
+                      <li class="text-md font-semibold">
+                        {{ subsidy.Compétence }}
+                      </li>
+                      <li class="text-sm font-normal">
+                        {{ subsidy.MinistreName }}
+                      </li>
+                    </ul>
                   </td>
                   <td class="px-3 py-4 text-sm text-gray-500">
-                    <br>
-                    {{ subsidy.AdministrationName }}<br>
-                    {{ subsidy.LegalBasis }}
+                    <ul>
+                      <li class="text-md font-semibold">
+                        {{ subsidy.AdministrationName }}
+                      </li>
+                      <li class="text-sm font-normal">
+                        {{ subsidy.LegalBasis }}
+                      </li>
+                    </ul>
                   </td>
                 </tr>
               </tbody>
@@ -71,7 +96,12 @@
 </template>
 
 <script>
+import ImgLogoCompetence from '@/components/partials/ImgLogoCompetence.vue';
+
 export default {
+  components: {
+    ImgLogoCompetence
+  },
   props: {
     subsidiesPerYear: {
       type: Object,
@@ -79,6 +109,12 @@ export default {
     },
    
   },
+  methods: {
+    percentageOfMax: function (subsidy, subsidies) {
+      const getMaxAmount = Math.max(...subsidies.map(subsidy => subsidy.AmountInEuros));
+      return (subsidy.AmountInEuros / getMaxAmount) * 100;
+    }
+  }
  
 };
 </script>

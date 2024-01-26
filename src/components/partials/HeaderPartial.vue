@@ -9,18 +9,13 @@
       </p>
 
       <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
-          {{ attrib1 }}
-        </div>
-        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
-          {{ attrib2 }}
-        </div>
-        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
-          {{ attrib3 }}
-        </div>
-        <div class="mt-2 flex items-center text-sm text-gray-700 uppercase font-medium">
-          {{ attrib4 }}
-        </div>
+        <span
+          v-for="tag in tags"
+          :key="tag"
+          class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+        >
+          {{ tag }}
+        </span>
       </div>
       <slot />
     </div>
@@ -39,27 +34,11 @@ export default {
       required: false,
       default: ''
     },
-    attrib1: {
-      type: String,
+    tags: {
+      type: Array,
       required: false,
-      default: ''
-    },
-    attrib2: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    attrib3: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    attrib4: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
+      default: () => []
+    }
   },
  
 };

@@ -4,11 +4,8 @@
   >
     <HeaderPartial
       :title="$filters.joinOnKey(company.Denominations, 'Denomination')"
-      :subtitle="$filters.joinOnKey(company.Denominations, 'DenominationType')"
-      :attrib1="$filters.getTranslation(company.StatusLabel, 'FR')"
-      :attrib2="$filters.getTranslation(company.JuridicalSituationLabel, 'FR')"
-      :attrib3="$filters.getTranslation(company.JuridicalFormCACLabel, 'FR')"
-      :attrib4="company.Languages"
+      :subtitle="$filters.joinOnKey(company.Denominations, 'Type')"
+      :tags="[$filters.getTranslation(company.StatusLabel, 'FR'), $filters.getTranslation(company.JuridicalSituationLabel, 'FR'), $filters.getTranslation(company.JuridicalFormCACLabel, 'FR'), company.Languages]"
     />
 
     <main>
