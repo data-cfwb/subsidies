@@ -3,49 +3,32 @@
     v-if="data_loaded"
   >
     <HeaderPartial
-      :title="'Résultats de la recherche pour' + results.input.name"
+      :title="'Résultats de la recherche pour « ' + results.input.name + ' »'"
     />
     <main>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
-        <h3 class="text-base font-semibold leading-7 text-gray-900">
-          Résultats de la recherche pour "{{ results.input.name }}"
-        </h3>
         <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
           Il y a {{ results.results }} résultats.
         </p>
       </div>
       <div class="mt-6 border-t border-gray-100 px-6 lg:px-8">
-        <dl class="divide-y divide-gray-100">
-          <div
-            v-for="company in results.enterprises"
-            :key="company"
-            class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-          >
-            <dt class="text-sm font-medium leading-6 text-gray-900">
-              {{ company.denomination }}<br>
-              <RouterLink
-                :to="/enterprises/ + company.EnterpriseNumber"
-              >
-                {{ company.EnterpriseNumber }}
-              </RouterLink>
-            </dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {{ company.type_entreprise_fr }}
-              {{ company.juridical_form_cac_fr }} <br>
-
-              <span class="text-gray-500">{{ company.addresses }}</span><br>
-            </dd>
-          </div>
-        </dl>
+        <EnterprisesTable :enterprises="results.enterprises" />
       </div>
     </main>
+  </div>
+  <div v-else>
+    <LoadingFwb />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import EnterprisesTable from '../partials/EnterprisesTable.vue';
 
 export default {
+  components: {
+    EnterprisesTable
+  },
   props: {
     searchName: {
       type: String,

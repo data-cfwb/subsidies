@@ -6,7 +6,17 @@
       :title="$filters.joinOnKey(company.Denominations, 'Denomination')"
       :subtitle="$filters.joinOnKey(company.Denominations, 'Type')"
       :tags="[$filters.getTranslation(company.StatusLabel, 'FR'), $filters.getTranslation(company.JuridicalSituationLabel, 'FR'), $filters.getTranslation(company.JuridicalFormCACLabel, 'FR'), company.Languages]"
-    />
+    >
+      <div class="py-2">
+        <span class="font-bold">Numéro BCE: </span>
+        <RouterLink
+          :to="/enterprises/ + company.EnterpriseNumber"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          {{ company.EnterpriseNumberBE }}
+        </RouterLink>
+      </div>
+    </HeaderPartial>
 
     <main>
       <!-- 2 column wrapper -->
@@ -15,11 +25,6 @@
         <div class="flex-1 xl:flex">
           <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
             <!-- Main area -->
-            <RouterLink
-              :to="/enterprises/ + company.EnterpriseNumber"
-            >
-              {{ company.EnterpriseNumberBE }}
-            </RouterLink>
        
             <ActivitiesList
               v-if="company.Activities.length"
