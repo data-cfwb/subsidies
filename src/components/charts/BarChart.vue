@@ -1,9 +1,11 @@
 <template>
-  <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  />
+  <div id="chart-wrapper">
+    <Bar
+      id="my-chart-id"
+      :options="chartOptions"
+      :data="chartData"
+    />
+  </div>
 </template>
   
 <script>
@@ -39,3 +41,10 @@ export default {
 };
 </script>
   
+<style scoped>
+  #chart-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+</style>

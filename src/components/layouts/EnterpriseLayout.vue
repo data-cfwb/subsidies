@@ -30,6 +30,15 @@
               v-if="company.Activities.length"
               :activities-per-type="ActivitiesMap"
             />
+
+            <BarChart
+              :data="company.SubsidiesPerYearForChart"
+            />
+
+            <SubsidiesTablePerYear
+              v-if="company.SubsidiesPerYear.length"
+              :subsidies-per-year="company.SubsidiesPerYear"
+            />
           </div>
         </div>
 
@@ -94,17 +103,8 @@
     
       <!-- {{ company.Languages }} -->
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
-        <div class="w-full">
-          <BarChart
-            :data="company.SubsidiesPerYearForChart"
-          />
-        </div>
-        <div class="w-1/2">
-          <SubsidiesTablePerYear
-            v-if="company.SubsidiesPerYear.length"
-            :subsidies-per-year="company.SubsidiesPerYear"
-          />
-        </div>
+        <div class="w-1/2" />
+     
 
         <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
