@@ -34,11 +34,6 @@
             <BarChart
               :data="company.SubsidiesPerYearForChart"
             />
-
-            <SubsidiesTablePerYear
-              v-if="company.SubsidiesPerYear.length"
-              :subsidies-per-year="company.SubsidiesPerYear"
-            />
           </div>
         </div>
 
@@ -105,7 +100,13 @@
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
         <div class="w-1/2" />
      
-
+        <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase py-3">
+          Les subventions par année octroyées par la Fédération Wallonie-Bruxelles
+        </h2>
+        <SubsidiesTablePerYear
+          v-if="company.SubsidiesPerYear.length"
+          :subsidies-per-year="company.SubsidiesPerYear"
+        />
         <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
       
