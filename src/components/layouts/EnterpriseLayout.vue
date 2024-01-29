@@ -91,63 +91,24 @@
         </div>
       </div>
  
+    
       <!-- {{ company.Languages }} -->
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-2">
-        <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
-          Subventions octroyées par la Fédération Wallonie-Bruxelles
-        </h2>
-        <div>
-          <table class="table-auto">
-            <thead>
-              <tr>
-                <th class="text-left">
-                  Année
-                </th>
-                <th class="text-right">
-                  Montant
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="subsidy in company.SubsidiesPerYear"
-                :key="subsidy"
-              >
-                <td>{{ subsidy.Year }}</td>
-                <td class="text-right">
-                  {{ $filters.formatToEuros(subsidy.total) }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="w-1/2">
+        <div class="w-full">
           <BarChart
             :data="company.SubsidiesPerYearForChart"
+          />
+        </div>
+        <div class="w-1/2">
+          <SubsidiesTablePerYear
+            v-if="company.SubsidiesPerYear.length"
+            :subsidies-per-year="company.SubsidiesPerYear"
           />
         </div>
 
         <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
-        <!-- <h2
-          v-if="company.Establishments"
-          class="text-base font-semibold leading-8 text-gray-900 uppercase"
-        >
-          Établissements
-        </h2>
-        <div>
-          <ul>
-            <li
-              v-for="estab in company.Establishments"
-              :key="estab"
-            >
-              {{ estab }}
-              {{ estab.EnterpriseNumber }}: {{ estab.StartDate }}
-            </li>
-          </ul>
-        </div> -->
-
+      
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Sources de données
         </h2>
@@ -191,12 +152,14 @@ import axios from 'axios';
 import BarChart from '../charts/BarChart.vue';
 import SubidiesTable from '../partials/SubdidiesTable.vue';
 import ActivitiesList from '../partials/ActivitiesList.vue';
+import SubsidiesTablePerYear from '../partials/SubsidiesTablePerYear.vue';
 
 export default {
   components: {
     BarChart,
     SubidiesTable,
-    ActivitiesList
+    ActivitiesList,
+    SubsidiesTablePerYear
   },
   props: {
     beNumber: {
