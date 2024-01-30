@@ -10,10 +10,10 @@
 
       <div class="flex justify-center space-x-6 md:order-2">
         <img
-          v-for="logo in ['CULT', 'Adeps', 'AJ', 'ENS', 'MJ', 'RS'].sort(function() {return 0.5 - Math.random()})"
+          v-for="logo in ['Adeps', 'AJ', 'CULT', 'ENS', 'MJ', 'RS_'].sort(function() {return 0.5 - Math.random()})"
           :key="logo"
-          alt=""
-          class="h-8"
+          :alt="'Logo ' + logo"
+          class="h-8 text-center w-auto"
           :src="'https://raw.githubusercontent.com/data-cfwb/charte-graphique/main/pastilles_PNG_et_SVG_24px/pastille_' + logo + '24.svg'"
         >
       </div>

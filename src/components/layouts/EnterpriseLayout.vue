@@ -107,16 +107,20 @@
           v-if="company.SubsidiesPerYear.length"
           :subsidies-per-year="company.SubsidiesPerYear"
         />
+        <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase py-3">
+          Détails des subventions par année
+        </h2>
         <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
       
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Sources de données
         </h2>
-        <ul class="list-disc">
+        <ul class="list-disc list-inside">
           <li
             v-for="key, link in company.DataSourcesLinks"
             :key="link"
+            class="px-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-50"
           >
             <a
               :href="key.href"
@@ -127,10 +131,11 @@
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
           Liens externes
         </h2>
-        <ul class="list-disc">
+        <ul class="list-disc list-inside">
           <li
             v-for="key, link in company.ExternalLinks"
             :key="link"
+            class="px-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-50"
           >
             <a
               :href="key.href"
