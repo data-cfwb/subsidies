@@ -56,7 +56,7 @@
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
                     <ImgLogoCompetence :administration-name="subsidy.AdministrationName" />
                   </td>
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right tracking-wide">
                     {{ $filters.formatToEuros(subsidy.AmountInEuros) }}
                     <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
                       <div
