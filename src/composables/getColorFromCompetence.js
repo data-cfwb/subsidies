@@ -10,6 +10,8 @@ export function getColorFromCompetence(competence) {
   switch (competence) {
   case 'Education':
     return '#42A09E';
+  case 'Enseignement supérieur et recherche':
+    return '#42A09E';
   case 'Education permanente':
     return '#4A5563';
   case 'Culture':
@@ -25,6 +27,8 @@ export function getColorFromCompetence(competence) {
   case 'Recherche':
     return '#42A09E';
   case 'Sport':
+    return '#ED9E41';
+  case 'Sport et contrôle médico-sportif':
     return '#ED9E41';
   case 'Urgence Covid-19':
     return '#F2A900';
