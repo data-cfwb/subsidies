@@ -31,8 +31,10 @@
               :activities-per-type="ActivitiesMap"
             />
 
+           
+
             <BarChart
-              :data="company.SubsidiesPerYearForChart"
+              :data="transformDataForChart"
             />
           </div>
         </div>
@@ -110,7 +112,7 @@
         <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase py-3">
           Détails des subventions par année
         </h2>
-        <SubidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
+        <SubsidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
 
       
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
@@ -156,14 +158,16 @@
 import axios from 'axios';
 
 import BarChart from '../charts/BarChart.vue';
-import SubidiesTable from '../partials/SubdidiesTable.vue';
+import SubsidiesTable from '../partials/SubsidiesTable.vue';
 import ActivitiesList from '../partials/ActivitiesList.vue';
 import SubsidiesTablePerYear from '../partials/SubsidiesTablePerYear.vue';
+
+import { getColorFromCompetence } from '@/composables/getColorFromCompetence.js'; 
 
 export default {
   components: {
     BarChart,
-    SubidiesTable,
+    SubsidiesTable,
     ActivitiesList,
     SubsidiesTablePerYear
   },
@@ -193,24 +197,52 @@ export default {
         activities[activity.activity].labels.push(activity);
       });
       return activities;
+    },
+    transformDataForChart: function () {
+      const datasets = {};
+      const labels = Array.from(new Set(this.company.SubsidiesPerYear.map(item => item.Year))).sort();
+
+      for (const yearLabel of labels) {
+        for (const competenceData of this.company.SubsidiesMapByYear[yearLabel] || []) {
+          const competence = competenceData.Compétence;
+
+          if (!datasets[competence]) {
+            datasets[competence] = {
+              label: competence,
+              data: Array(labels.length).fill(0),
+              // random from [red, green, blue, yellow]
+              backgroundColor: getColorFromCompetence(competence),
+            };
+          }
+
+          const index = labels.indexOf(yearLabel);
+          datasets[competence].data[index] += competenceData.AmountInEuros;
+        }
+      }
+
+      return {
+        labels: labels,
+        datasets: Object.values(datasets),
+      };
     }
+
 
   },
   mounted () {
-    this.getSubsidies();
+    this.getDataFromAPI();
   },
   created() {
     this.$watch(
       () => this.$route.params,
       () => {
         this.data_loaded = false;
-        this.getSubsidies();
+        this.getDataFromAPI();
         // reload Chart
       }
     );
   },
   methods: {
-    getSubsidies: function () {
+    getDataFromAPI: function () {
       axios.get('https://be-companies.tintamarre.be/api/enterprises/' + this.beNumber)
         .then(response => {
           this.company = response.data.data;

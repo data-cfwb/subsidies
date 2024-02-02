@@ -4,7 +4,7 @@
       <div class="mt-8 md:order-1 md:mt-0">
         <p class="text-left text-xs leading-5 text-gray-500">
           Réalisé sous licence libre. <br>
-          <a href="https://github.com/data-cfwb/subsidies">Code source</a>
+          <a href="https://github.com/data-cfwb/subsidies">Code source</a><br>
         </p>
       </div>
 

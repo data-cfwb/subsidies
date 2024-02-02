@@ -27,14 +27,20 @@ export default {
     return {
       chartData: {
         labels: this.data.labels,
-        datasets: [ { 
-          label: 'Subventions par année',
-          backgroundColor: '#49508B',
-          data: this.data.values 
-        } ]
+        datasets: this.data.datasets
       },
       chartOptions: {
-        responsive: true
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true,
+            stacked: true
+          },
+          y: {
+            beginAtZero: true,
+            stacked: true
+          }
+        }
       }
     };
   }
