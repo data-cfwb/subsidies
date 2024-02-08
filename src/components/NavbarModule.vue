@@ -26,6 +26,7 @@
               :active-class="'inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'"
               :exact-active-class="'inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'"
               class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
+              @click="refreshIfcurrentPage"
             >
               Organisation aléatoire
             </router-link>
@@ -171,6 +172,11 @@ export default {
       } 
   },
   methods: {
+    refreshIfcurrentPage: function () {
+      if (this.$route.path === '/enterprises/random') {
+        this.$router.go();
+      }
+    },
     redirectToSearch: function () {
       this.$router.push(
         { 
