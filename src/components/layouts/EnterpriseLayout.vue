@@ -243,7 +243,7 @@ export default {
   },
   methods: {
     getDataFromAPI: function () {
-      axios.get('https://be-companies.tintamarre.be/api/enterprises/' + this.beNumber)
+      axios.get('https://api-subventions.datawb.be/api/enterprises/' + this.beNumber)
         .then(response => {
           this.company = response.data.data;
           this.data_loaded = true;

@@ -52,7 +52,8 @@ export default {
   },
   methods: {
     getHomePageInfo: function () {
-      axios.get('https://be-companies.tintamarre.be/api/stats')
+      // api-subventions.datawb.be
+      axios.get('https://api-subventions.datawb.be/api/stats')
         .then(response => {
           this.data_loaded = true;
           this.stats = response.data.data;
