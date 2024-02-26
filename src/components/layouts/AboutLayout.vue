@@ -13,7 +13,7 @@
           <div>
             <p class="mt-4" />
             <p class="mt-4">
-              Il vise à mettre en évidence les subventions accordées par la Fédération Wallonie-Bruxelles aux organisations actives dans le sport, l'enseignement, la culture, la jeunesse, les médias, l'éducation permanente et la recherche scientifique.
+              L'application vise à mettre en évidence les subventions accordées par la Fédération Wallonie-Bruxelles aux organisations actives dans le sport, l'enseignement, la culture, la jeunesse, les médias, l'éducation permanente et la recherche scientifique.
             </p>
           </div>
           <div>
