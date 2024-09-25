@@ -125,7 +125,7 @@
             </h2>
             <p class="mb-4">
               Si vous ne pouvez prendre connaissance de certains contenus en raison de leur inaccessibilité, vous pouvez écrire à l'adresse : <a
-                href="mailto:adresse@mail.com"
+                href="mailto:data.office@cfwb.be"
                 class="text-indigo-600 hover:underline"
               >adresse mail</a>.
             </p>
