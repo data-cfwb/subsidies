@@ -20,7 +20,7 @@
         >
       </div>
       <div class="flex justify-center space-x-6 md:order-3">
-        <p class="text-center text-xs leading-5 text-gray-500">
+        <p class="text-right text-xs leading-5 text-gray-500">
           2023 - {{ new Date().getFullYear() }}
           <ul class="text-right text-xs leading-5 text-gray-500">          
             <li><a href="/declaration-sur-l-accessibilite">Déclaration d'accessibilité</a></li>
