@@ -127,7 +127,7 @@
               Si vous ne pouvez prendre connaissance de certains contenus en raison de leur inaccessibilité, vous pouvez écrire à l'adresse : <a
                 href="mailto:data.office@cfwb.be"
                 class="text-indigo-600 hover:underline"
-              >adresse mail</a>.
+              >data.office@cfwb.be</a>.
             </p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">
