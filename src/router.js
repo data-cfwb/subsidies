@@ -5,6 +5,7 @@ import {nextTick} from 'vue';
 
 import HomeLayout from './components/layouts/HomeLayout.vue';
 import AboutLayout from './components/layouts/AboutLayout.vue';
+import AccessibilityLayout from './components/layouts/AccessibilityLayout.vue';
 import StatsLayout from './components/layouts/StatsLayout.vue';
 import SearchLayout from './components/layouts/SearchLayout.vue';
 import EnterpriseLayout from './components/layouts/EnterpriseLayout.vue';
@@ -58,6 +59,13 @@ const router = createRouter({
       component: AboutLayout,
       meta: {
         title: 'À propos'
+      }  
+    },
+    { 
+      path: '/declaration-sur-l-accessibilite', 
+      component: AccessibilityLayout,
+      meta: {
+        title: 'Déclaration d\'accessibilité'
       }  
     },
   ],
