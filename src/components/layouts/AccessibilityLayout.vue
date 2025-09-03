@@ -144,7 +144,7 @@
               Plan d'amélioration
             </h2>
             <p>
-              Ce site est appelé à être modifié et intégré dans un autre site en <span class="font-semibold">2024-2025</span>.
+              Ce site est appelé à être modifié.
             </p>
           </div>
         </div>
