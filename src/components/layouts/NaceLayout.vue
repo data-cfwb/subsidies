@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     getNaceData () {
-      axios.get(`https://api-subventions.datawb.be/api/codes/${this.category}/${this.code}/FR/insights`)
+      axios.get(`https://api.etnic.be:7443/external/dataoffice/subventions/api/codes/${this.category}/${this.code}/FR/insights`)
         .then(response => {
           this.insights = response.data;
           this.data_loaded = true;

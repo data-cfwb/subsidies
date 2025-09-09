@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     getHomePageInfo: function () {
-      // api-subventions.datawb.be
-      axios.get('https://api-subventions.datawb.be/api/stats')
+      axios.get('https://api.etnic.be:7443/external/dataoffice/subventions/api/stats')
         .then(response => {
           this.data_loaded = true;
           this.stats = response.data.data;
