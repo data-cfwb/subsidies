@@ -45,7 +45,7 @@
                 :key="subsidy"
               >
                 <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                  {{ subsidy.denomination }}
+                  {{ subsidy.denominations }}
                   <br>
                   <RouterLink
                     :to="/enterprises/ + subsidy.EnterpriseNumber"
