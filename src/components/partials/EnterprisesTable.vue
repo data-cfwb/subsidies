@@ -127,14 +127,7 @@ export default {
     },
     downloadCsv(data) {
       const csv = this.convertToCSV(data);
-      const now = new Date();
-      const timestamp =
-        now.getFullYear().toString() +
-        String(now.getMonth() + 1).padStart(2, '0') +
-        String(now.getDate()).padStart(2, '0') +
-        String(now.getHours()).padStart(2, '0') +
-        String(now.getMinutes()).padStart(2, '0') +
-        String(now.getSeconds()).padStart(2, '0');
+      const timestamp = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
       const safeName = this.sanitizeFilename(this.lookupname);
       const exportedFilename = `${safeName}_${timestamp}.csv`;
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
