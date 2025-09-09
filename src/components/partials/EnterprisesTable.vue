@@ -1,6 +1,7 @@
 <template>
   <div class="mt-8 flow-root">
     <button
+      v-if="enterprises.length"
       type="button"
       class="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
       @click="downloadCsv(enterprises)"
@@ -90,13 +91,16 @@
 </template>
 <script>
 export default {
-  props:
-    {
-      enterprises: {
-        type: Object,
-        required: true
-      },
+  props: {
+    enterprises: {
+      type: Object,
+      required: true
     },
+    lookupname: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     convertToCSV(objArray) {
       const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
@@ -118,16 +122,27 @@ export default {
 
       return str;
     },
+    sanitizeFilename(name) {
+      return (name || '').trim().toLowerCase().replace(/[^a-z0-9_-]/gi, '_');
+    },
     downloadCsv(data) {
       const csv = this.convertToCSV(data);
-      const exportedFilename = 'export.csv';
+      const now = new Date();
+      const timestamp =
+        now.getFullYear().toString() +
+        String(now.getMonth() + 1).padStart(2, '0') +
+        String(now.getDate()).padStart(2, '0') +
+        String(now.getHours()).padStart(2, '0') +
+        String(now.getMinutes()).padStart(2, '0') +
+        String(now.getSeconds()).padStart(2, '0');
+      const safeName = this.sanitizeFilename(this.lookupname);
+      const exportedFilename = `${safeName}_${timestamp}.csv`;
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      if (navigator.msSaveBlob) { // IE 10+
+      if (navigator.msSaveBlob) {
         navigator.msSaveBlob(blob, exportedFilename);
       } else {
         const link = document.createElement('a');
-        if (link.download !== undefined) { // feature detection
-          // Browsers that support HTML5 download attribute
+        if (link.download !== undefined) {
           const url = URL.createObjectURL(blob);
           link.setAttribute('href', url);
           link.setAttribute('download', exportedFilename);
@@ -139,6 +154,5 @@ export default {
       }
     },
   },
-
 };
 </script>

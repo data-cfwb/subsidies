@@ -12,7 +12,10 @@
         </p>
       </div>
       <div class="mt-6 border-t border-gray-100 px-6 lg:px-8">
-        <EnterprisesTable :enterprises="results.enterprises" />
+        <EnterprisesTable 
+          :enterprises="results.enterprises" 
+          :lookupname="searchName" 
+        />
       </div>
     </main>
   </div>
