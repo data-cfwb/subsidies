@@ -102,14 +102,17 @@ export default {
       const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
       let str = '';
 
+      // Add header row
+      const header = Object.keys(array[0]).join(',');
+      str += `${header}\r\n`;
+
+      // Add data rows
       for (let i = 0; i < array.length; i += 1) {
         let line = '';
         for (const index in array[i]) {
           if (line !== '') line += ',';
-
-          line += '"' + array[i][index] + '"';
+          line += `"${array[i][index]}"`;
         }
-
         str += `${line}\r\n`;
       }
 
