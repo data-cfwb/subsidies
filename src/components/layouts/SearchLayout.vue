@@ -51,7 +51,7 @@ export default {
   methods: {
     getSearchResults: function () {
       if (this.searchName) {
-        axios.get('https://api.etnic.be:7443/external/dataoffice/subventions/api/lookup?name=' + this.searchName)
+        axios.get('https://api.etnic.be:7443/external/dataoffice/subventions/api/search/lookup?name=' + this.searchName)
           .then(response => {
             this.data_loaded = true;
             this.results = response.data;
