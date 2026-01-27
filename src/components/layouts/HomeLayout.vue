@@ -5,6 +5,15 @@
     />
     <main>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
+        <div class="mb-8 text-center">
+          <p class="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+            Cet outil vous permet de consulter de manière transparente les subventions octroyées 
+            par la Fédération Wallonie-Bruxelles aux organisations. Explorez les données par 
+            entreprise, secteur d'activité (code NACE), ou effectuez une recherche ciblée. 
+            Visualisez les statistiques globales et découvrez comment les fonds publics sont 
+            distribués.
+          </p>
+        </div>
         <dl
         
           class="mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-3 md:divide-x md:divide-y-0"
