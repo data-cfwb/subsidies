@@ -5,8 +5,8 @@
     />
     <main>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
-        <div class="mb-8 text-center">
-          <p class="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+        <div class="mb-8 bg-white rounded-lg shadow-sm p-6">
+          <p class="text-base text-gray-700 leading-relaxed">
             Cet outil vous permet de consulter de manière transparente les subventions octroyées 
             par la Fédération Wallonie-Bruxelles aux organisations. Explorez les données par 
             entreprise, secteur d'activité (code NACE), ou effectuez une recherche ciblée. 
