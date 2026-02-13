@@ -1,7 +1,7 @@
 <template>
   <div v-if="data_loaded">
     <HeaderPartial
-      :title="insights.code.Description"
+      :title="insights.code.description"
       subtitle="Statistiques pour le secteur"
     />
     <main>
@@ -9,7 +9,7 @@
         <div>
           <div class="px-4 sm:px-0">
             <p class="mt-1 max-w-2xl text-md leading-6 text-gray-700">
-              Détails sur le secteur "{{ insights.code.Description }}" en Belgique référencé par la Banque Carrefour des Enterprises (BCE) sous le code NACE {{ insights.code.Code }} ({{ insights.code.Category }}).
+              Détails sur le secteur "{{ insights.code.description }}" en Belgique référencé par la Banque Carrefour des Enterprises (BCE) sous le code NACE {{ insights.code.code }} ({{ insights.code.category }}).
             </p>
           </div>
 
@@ -66,7 +66,7 @@
 
         <div class="mt-6 border-t border-gray-100">
           <h2 class="text-base font-semibold leading-6 text-gray-900 uppercase">
-            Liste des organisations du secteur "{{ insights.code.Description }}" subventionnées
+            Liste des organisations du secteur "{{ insights.code.description }}" subventionnées
             par la Fédération Wallonie-Bruxelles (FWB)
           </h2>
           <EnterprisesTable :enterprises="insights.all_enterprises" />
@@ -83,6 +83,7 @@
   
 <script>
 import axios from 'axios';
+import { API_BASE_URL } from '@/config/api.js';
 import EnterprisesTable from '../partials/EnterprisesTable.vue';
 // import PieChart from '../charts/PieChart.vue';
 
@@ -112,7 +113,7 @@ export default {
   },
   methods: {
     getNaceData () {
-      axios.get(`https://api.etnic.be:7443/external/dataoffice/subventions/api/codes/${this.category}/${this.code}/FR/insights`)
+      axios.get(`${API_BASE_URL}/api/codes/${this.category}/${this.code}/FR/insights`)
         .then(response => {
           this.insights = response.data;
           this.data_loaded = true;

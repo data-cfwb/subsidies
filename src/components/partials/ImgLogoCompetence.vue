@@ -1,7 +1,7 @@
 <template>
   <img
-    :src="url"  
-    :alt="competence"
+    :src="url"
+    :alt="administrationName"
     class="h-8"
   >
 </template>

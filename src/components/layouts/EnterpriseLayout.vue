@@ -4,17 +4,17 @@
     class="col-span-12 py-5 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8"
   >
     <HeaderPartial
-      :title="$filters.joinOnKey(company.Denominations, 'Denomination')"
-      :subtitle="$filters.joinOnKey(company.Denominations, 'Type')"
-      :tags="[$filters.getTranslation(company.StatusLabel, 'FR'), $filters.getTranslation(company.JuridicalSituationLabel, 'FR'), $filters.getTranslation(company.JuridicalFormCACLabel, 'FR'), company.Languages]"
+      :title="$filters.joinOnKey(company.denominations, 'denomination')"
+      :subtitle="$filters.joinOnKey(company.denominations, 'type')"
+      :tags="[$filters.getTranslation(company.status_label, 'FR'), $filters.getTranslation(company.juridical_situation_label, 'FR'), $filters.getTranslation(company.juridical_form_label, 'FR'), company.languages]"
     >
       <div class="py-2">
         <span class="font-bold">Numéro BCE: </span>
         <RouterLink
-          :to="/enterprises/ + company.EnterpriseNumber"
+          :to="/enterprises/ + company.enterprise_number"
           class="font-medium text-indigo-600 hover:text-indigo-500"
         >
-          {{ company.EnterpriseNumberBE }}
+          {{ company.enterprise_number_be }}
         </RouterLink>
       </div>
     </HeaderPartial>
@@ -27,7 +27,7 @@
             <!-- Main area -->
        
             <ActivitiesList
-              v-if="company.Activities.length"
+              v-if="company.activities.length"
               :activities-per-type="ActivitiesMap"
             />
 
@@ -43,7 +43,7 @@
           <!-- Right column area -->
 
           <h2
-            v-if="company.Contacts.length"
+            v-if="company.contacts.length"
             class="text-base font-semibold leading-7 text-gray-900 uppercase py-3"
           >
             Contacts
@@ -51,22 +51,22 @@
           <div>
             <ul>
               <li
-                v-for="contact in company.Contacts"
+                v-for="contact in company.contacts"
                 :key="contact"
               >
-                {{ contact.ContactType }}: 
-                <span v-if="contact.ContactType == 'EMAIL'">
+                {{ contact.contact_type }}:
+                <span v-if="contact.contact_type == 'EMAIL'">
                   <a
-                    :href="'mailto:' + contact.Value"
-                  >{{ contact.Value }}</a>
+                    :href="'mailto:' + contact.value"
+                  >{{ contact.value }}</a>
                 </span>
-                <span v-if="contact.ContactType == 'WEB'"><a
-                  :href="'https://' + contact.Value"
-                >{{ contact.Value }}</a>
+                <span v-if="contact.contact_type == 'WEB'"><a
+                  :href="'https://' + contact.value"
+                >{{ contact.value }}</a>
                 </span>
-                <span v-if="contact.ContactType == 'TEL'"><a
-                  :href="'tel:' + contact.Value"
-                >{{ contact.Value }}</a>
+                <span v-if="contact.contact_type == 'TEL'"><a
+                  :href="'tel:' + contact.value"
+                >{{ contact.value }}</a>
                 </span>
               </li>
             </ul>
@@ -77,18 +77,18 @@
           </h3>
           <ul>
             <li
-              v-for="address in company.Addresses"
+              v-for="address in company.addresses"
               :key="address"
             >
-              {{ address.StreetFR }} {{ address.HouseNumber }} {{ address.Box }}
+              {{ address.street_fr }} {{ address.house_number }} {{ address.box }}
               <br>
-              {{ address.Zipcode }} {{ address.MunicipalityFR }}
+              {{ address.zipcode }} {{ address.municipality_fr }}
             </li>
 
             <a
               type="button"
               class="rounded bg-gray-50 px-2 py-1 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-              :href="'https://www.openstreetmap.org/search?query=' + company.Addresses[0].StreetFR + ' ' + company.Addresses[0].HouseNumber + ' ' + company.Addresses[0].Zipcode + ' ' + company.Addresses[0].MunicipalityFR"
+              :href="'https://www.openstreetmap.org/search?query=' + company.addresses[0].street_fr + ' ' + company.addresses[0].house_number + ' ' + company.addresses[0].zipcode + ' ' + company.addresses[0].municipality_fr"
               target="_blank"
             >
               Voir sur une carte
@@ -106,13 +106,13 @@
           Les subventions par année octroyées par la Fédération Wallonie-Bruxelles
         </h2>
         <SubsidiesTablePerYear
-          v-if="company.SubsidiesPerYear.length"
-          :subsidies-per-year="company.SubsidiesPerYear"
+          v-if="company.subsidies_per_year.length"
+          :subsidies-per-year="company.subsidies_per_year"
         />
         <h2 class="text-base font-semibold leading-7 text-gray-900 uppercase py-3">
           Détails des subventions par année
         </h2>
-        <SubsidiesTable :subsidies-per-year="company.SubsidiesMapByYear" />
+        <SubsidiesTable :subsidies-per-year="company.subsidies_map_by_year" />
 
       
         <h2 class="text-base font-semibold leading-8 text-gray-900 uppercase">
@@ -120,7 +120,7 @@
         </h2>
         <ul class="list-disc list-inside">
           <li
-            v-for="key, link in company.DataSourcesLinks"
+            v-for="key, link in company.data_sources_links"
             :key="link"
             class="px-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-50"
           >
@@ -135,7 +135,7 @@
         </h2>
         <ul class="list-disc list-inside">
           <li
-            v-for="key, link in company.ExternalLinks"
+            v-for="key, link in company.external_links"
             :key="link"
             class="px-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-50"
           >
@@ -156,6 +156,7 @@
 
 <script>
 import axios from 'axios';
+import { API_BASE_URL } from '@/config/api.js';
 
 import BarChart from '../charts/BarChart.vue';
 import SubsidiesTable from '../partials/SubsidiesTable.vue';
@@ -187,7 +188,7 @@ export default {
     ActivitiesMap: function () {
       // group activities by activity
       let activities = {};
-      this.company.Activities.forEach(activity => {
+      this.company.activities.forEach(activity => {
         if (!activities[activity.activity]) {
           activities[activity.activity] = {
             activity: activity.activity,
@@ -200,11 +201,11 @@ export default {
     },
     transformDataForChart: function () {
       const datasets = {};
-      const labels = Array.from(new Set(this.company.SubsidiesPerYear.map(item => item.Year))).sort();
+      const labels = Array.from(new Set(this.company.subsidies_per_year.map(item => item.year))).sort();
 
       for (const yearLabel of labels) {
-        for (const competenceData of this.company.SubsidiesMapByYear[yearLabel] || []) {
-          const competence = competenceData.Compétence;
+        for (const competenceData of this.company.subsidies_map_by_year[yearLabel] || []) {
+          const competence = competenceData.competence;
 
           if (!datasets[competence]) {
             datasets[competence] = {
@@ -216,7 +217,7 @@ export default {
           }
 
           const index = labels.indexOf(yearLabel);
-          datasets[competence].data[index] += competenceData.AmountInEuros;
+          datasets[competence].data[index] += competenceData.amount_in_euros;
         }
       }
 
@@ -243,7 +244,10 @@ export default {
   },
   methods: {
     getDataFromAPI: function () {
-      axios.get('https://api.etnic.be:7443/external/dataoffice/subventions/api/enterprises/' + this.beNumber)
+      const endpoint = this.beNumber === 'random'
+        ? `${API_BASE_URL}/api/enterprises/random/`
+        : `${API_BASE_URL}/api/enterprises/${this.beNumber}`;
+      axios.get(endpoint)
         .then(response => {
           this.company = response.data.data;
           this.data_loaded = true;
