@@ -58,6 +58,10 @@
               <li>Vérification manuelle</li>
             </ul>
 
+            <p class="mb-4">
+              Date de la dernière mise à jour de la déclaration : <span class="font-semibold">09/06/2026</span>.
+            </p>
+
             <h2 class="text-2xl font-semibold mb-4 text-gray-800">
               Contenu non accessible
             </h2>
@@ -143,8 +147,21 @@
             <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">
               Plan d'amélioration
             </h2>
-            <p>
-              Ce site est appelé à être modifié.
+            <p class="mb-4">
+              Afin d'atteindre une conformité totale aux standards <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 niveau AA, les actions correctives suivantes sont planifiées pour les points relevés dans la section « Contenu non accessible » :
+            </p>
+            <ul class="list-disc list-inside mb-4 space-y-2">
+              <li>Révision de l'ordre de tabulation et de la navigation au clavier afin qu'il corresponde à l'ordre visuel et que tous les éléments interactifs soient accessibles au clavier.</li>
+              <li>Ajout ou correction des alternatives textuelles pour l'ensemble des images à valeur informative.</li>
+              <li>Optimisation de la hiérarchie des titres (H1 à H6) pour permettre une navigation structurée et significative.</li>
+              <li>Renforcement des contrastes de couleurs entre le texte/les visuels et l'arrière-plan afin d'atteindre les ratios minimaux requis.</li>
+              <li>Intégration des éléments de listes dans des listes sémantiques (&lt;ul&gt;, &lt;ol&gt;).</li>
+              <li>Ajout d'un titre descriptif à l'ensemble des iframes.</li>
+              <li>Ajout d'alternatives aux informations relayées uniquement par la couleur.</li>
+              <li>Correction des éléments non restitués par les lecteurs d'écran.</li>
+            </ul>
+            <p class="mb-4">
+              Ces corrections sont menées en collaboration avec notre partenaire informatique. Leur mise en œuvre est planifiée d'ici la fin de l'année <span class="font-semibold">2026</span>. La présente déclaration sera actualisée au minimum une fois par an pour rendre compte de l'avancement.
             </p>
           </div>
         </div>
