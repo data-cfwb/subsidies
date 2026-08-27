@@ -6,7 +6,7 @@
     <HeaderPartial
       :title="$filters.joinOnKey(company.denominations, 'denomination')"
       :subtitle="$filters.joinOnKey(company.denominations, 'type')"
-      :tags="[$filters.getTranslation(company.status_label, 'FR'), $filters.getTranslation(company.juridical_situation_label, 'FR'), $filters.getTranslation(company.juridical_form_cac_label, 'FR'), company.languages]"
+      :tags="[$filters.getTranslation(company.status_label, 'FR'), $filters.getTranslation(company.juridical_situation_label, 'FR'), $filters.getTranslation(juridicalFormLabel, 'FR'), company.languages]"
     >
       <div class="py-2">
         <span class="font-bold">Numéro BCE: </span>
@@ -185,6 +185,12 @@ export default {
     };
   },
   computed: {
+    juridicalFormLabel: function () {
+      // Prefer the modernized "CAC" (Code des sociétés et des associations)
+      // form label; fall back to the legacy form label when it is empty.
+      const cac = this.company.juridical_form_cac_label;
+      return (cac && cac.length) ? cac : this.company.juridical_form_label;
+    },
     ActivitiesMap: function () {
       // group activities by activity
       let activities = {};
@@ -244,7 +250,12 @@ export default {
   },
   methods: {
     getDataFromAPI: function () {
-      axios.get(`${API_BASE}/enterprises/${this.beNumber}`)
+      // The backend exposes "random" as a distinct route that requires a
+      // trailing slash (/enterprises/random/), unlike numbered enterprises.
+      const path = this.beNumber === 'random'
+        ? 'enterprises/random/'
+        : `enterprises/${this.beNumber}`;
+      axios.get(`${API_BASE}/${path}`)
         .then(response => {
           this.company = response.data.data;
           this.data_loaded = true;
