@@ -49,7 +49,7 @@
                   {{ subsidy.denominations }}
                   <br>
                   <RouterLink
-                    :to="/enterprises/ + subsidy.enterprise_number"
+                    :to="'/enterprises/' + subsidy.enterprise_number"
                   >
                     {{ subsidy.enterprise_number }}
                   </RouterLink>

@@ -11,7 +11,7 @@
       <div class="py-2">
         <span class="font-bold">Numéro BCE: </span>
         <RouterLink
-          :to="/enterprises/ + company.enterprise_number"
+          :to="'/enterprises/' + company.enterprise_number"
           class="font-medium text-indigo-600 hover:text-indigo-500"
         >
           {{ company.enterprise_number_be }}

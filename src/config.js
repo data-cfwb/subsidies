@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global process */
 // Central API base URL.
 //
 // Override at build time with VUE_APP_API_BASE (e.g. a local FastAPI instance

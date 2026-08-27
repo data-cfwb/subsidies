@@ -52,7 +52,7 @@ export default {
   methods: {
     getSearchResults: function () {
       if (this.searchName) {
-        axios.get(`${API_BASE}/search/lookup?name=${this.searchName}`)
+        axios.get(`${API_BASE}/search/lookup`, { params: { name: this.searchName } })
           .then(response => {
             this.data_loaded = true;
             this.results = response.data;
