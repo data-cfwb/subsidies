@@ -44,6 +44,7 @@
 
 <script>
 import axios from 'axios';
+import { API_BASE } from '@/config.js';
 
 export default {
   components: {
@@ -61,7 +62,7 @@ export default {
   },
   methods: {
     getHomePageInfo: function () {
-      axios.get('https://api.etnic.be:7443/external/dataoffice/subventions/api/stats')
+      axios.get(`${API_BASE}/stats`)
         .then(response => {
           this.data_loaded = true;
           this.stats = response.data.data;

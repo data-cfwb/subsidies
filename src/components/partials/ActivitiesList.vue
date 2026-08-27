@@ -50,12 +50,12 @@
                 :key="activity"
               >
                 <td class="whitespace-nowrap py-1 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 text-right">
-                  <RouterLink :to="'/naces/' + activity.NaceVersion + '/' + activity.NaceCode">
-                    {{ activity.NaceCode }} 
-                  </RouterLink> 
+                  <RouterLink :to="'/naces/' + activity.nace_version + '/' + activity.nace_code">
+                    {{ activity.nace_code }}
+                  </RouterLink>
                 </td>
                 <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
-                  {{ activity.NaceVersion }}
+                  {{ activity.nace_version }}
                 </td>
                 <td class="px-3 py-1 text-sm text-gray-500">
                   {{ $filters.getTranslation(activity.labels, 'FR') }}

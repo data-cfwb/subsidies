@@ -22,8 +22,8 @@ app.config.globalProperties.$filters = {
     return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(value);
   },
   joinOnKey: (array, key) => array.map(item => item[key]).join(' / '),
-  //  [ { "Language": "DE", "Description": "Vereinigung ohne Gewinnerzielungsabsicht" }, { "Language": "FR", "Description": "Association sans but lucratif" }, { "Language": "NL", "Description": "Vereniging zonder winstoogmerk" } ] => "Association sans but lucratif"
-  getTranslation: (array, key) => array.find(item => item.Language === key)?.Description,
+  //  [ { "language": "DE", "description": "Vereinigung ohne Gewinnerzielungsabsicht" }, { "language": "FR", "description": "Association sans but lucratif" }, { "language": "NL", "description": "Vereniging zonder winstoogmerk" } ] => "Association sans but lucratif"
+  getTranslation: (array, key) => array.find(item => item.language === key)?.description,
 };
 
 app.component('LoadingFwb', LoadingFwb);

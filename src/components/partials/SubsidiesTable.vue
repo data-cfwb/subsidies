@@ -54,10 +54,10 @@
                   :key="subsidy"
                 >
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right">
-                    <ImgLogoCompetence :administration-name="subsidy.AdministrationName" />
+                    <ImgLogoCompetence :administration-name="subsidy.administration_name" />
                   </td>
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-right tracking-wide">
-                    {{ $filters.formatToEuros(subsidy.AmountInEuros) }}
+                    {{ $filters.formatToEuros(subsidy.amount_in_euros) }}
                     <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
                       <div
                         class="bg-blue-900 h-2.5 rounded-full"
@@ -68,20 +68,20 @@
                   <td class="px-3 py-4 text-sm text-gray-500">
                     <ul>
                       <li class="text-md font-semibold">
-                        {{ subsidy.Compétence }}
+                        {{ subsidy.competence }}
                       </li>
                       <li class="text-sm font-normal">
-                        {{ subsidy.MinistreName }}
+                        {{ subsidy.ministre_name }}
                       </li>
                     </ul>
                   </td>
                   <td class="px-3 py-4 text-sm text-gray-500">
                     <ul>
                       <li class="text-md font-semibold">
-                        {{ subsidy.AdministrationName }}
+                        {{ subsidy.administration_name }}
                       </li>
                       <li class="text-sm font-normal">
-                        {{ subsidy.LegalBasis }}
+                        {{ subsidy.legal_basis }}
                       </li>
                     </ul>
                   </td>
@@ -111,8 +111,8 @@ export default {
   },
   methods: {
     percentageOfMax: function (subsidy, subsidies) {
-      const getMaxAmount = Math.max(...subsidies.map(subsidy => subsidy.AmountInEuros));
-      return (subsidy.AmountInEuros / getMaxAmount) * 100;
+      const getMaxAmount = Math.max(...subsidies.map(subsidy => subsidy.amount_in_euros));
+      return (subsidy.amount_in_euros / getMaxAmount) * 100;
     }
   }
  
