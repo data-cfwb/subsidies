@@ -49,9 +49,9 @@
                   {{ subsidy.denominations }}
                   <br>
                   <RouterLink
-                    :to="/enterprises/ + subsidy.EnterpriseNumber"
+                    :to="/enterprises/ + subsidy.enterprise_number"
                   >
-                    {{ subsidy.EnterpriseNumber }}
+                    {{ subsidy.enterprise_number }}
                   </RouterLink>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
