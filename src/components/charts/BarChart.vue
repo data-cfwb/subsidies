@@ -1,8 +1,13 @@
 <template>
-  <Bar
-    :data="data"
-    :options="resolvedOptions"
-  />
+  <!-- Relative, full-size wrapper: required by Chart.js responsive sizing.
+       Callers that need a specific height wrap this in a fixed-height container
+       and pass options with maintainAspectRatio:false. -->
+  <div style="position: relative; width: 100%; height: 100%">
+    <Bar
+      :data="data"
+      :options="resolvedOptions"
+    />
+  </div>
 </template>
 
 <script>
@@ -34,9 +39,12 @@ export default {
   computed: {
     resolvedOptions() {
       if (this.options) return this.options;
+      // Default: keep maintainAspectRatio true so the chart sizes itself from its
+      // width even when the parent has no fixed height (avoids the resize loop that
+      // "Canvas exceeds max size" errors come from).
       return {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           x: { stacked: this.stacked },
           y: { beginAtZero: true, stacked: this.stacked }
