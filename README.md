@@ -1,5 +1,8 @@
 # subsidies
 
+Vue 3 frontend for the FWB subsidies site (https://subventions.datawb.be),
+consuming the `subventions-api` backend.
+
 ## Deployment and rollback
 
 Deployments are manual. In GitHub, open **Actions** → **Deploy GitHub Pages** →
@@ -30,6 +33,13 @@ yarn build
 ### Lints and fixes files
 ```
 yarn lint
+```
+
+### API base URL
+Defaults to the production gateway (see `src/config.js`). To target a local API,
+set `VUE_APP_API_BASE` in a `.env.local` file:
+```
+VUE_APP_API_BASE=http://localhost:8000/api
 ```
 
 ### Customize configuration
