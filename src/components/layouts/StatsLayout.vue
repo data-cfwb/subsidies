@@ -4,12 +4,50 @@
     subtitle="Les subventions de la Fédération Wallonie-Bruxelles en chiffres"
   />
   <main>
+    <!-- Fixed table-of-contents on very wide screens (avoids scrolling back up). -->
+    <nav
+      v-if="data_loaded"
+      class="hidden 2xl:flex flex-col gap-1 fixed right-6 top-28 z-20 text-sm"
+    >
+      <a
+        v-for="link in menu"
+        :key="link.href"
+        :href="link.href"
+        class="rounded px-3 py-1 text-gray-600 hover:bg-blue-50 hover:text-dark-blue"
+      >
+        {{ link.label }}
+      </a>
+    </nav>
+
     <div
       v-if="data_loaded"
       class="mx-auto max-w-7xl px-6 lg:px-8 mt-10 space-y-8"
     >
+      <!-- In-page menu (all screen sizes) -->
+      <nav class="bg-white rounded-lg shadow-sm p-4">
+        <p class="text-xs uppercase tracking-wide text-gray-400 mb-2">
+          Sur cette page
+        </p>
+        <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          <li
+            v-for="link in menu"
+            :key="link.href"
+          >
+            <a
+              :href="link.href"
+              class="text-light-blue hover:text-dark-blue underline"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
       <!-- Chart 1: sum by year and competence -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
+      <section
+        id="competence-amount"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
         <h2 class="text-lg font-semibold text-dark-blue mb-4">
           Somme des subventions (€) par année et compétence
         </h2>
@@ -25,7 +63,10 @@
       </section>
 
       <!-- Chart 2: count by year and competence -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
+      <section
+        id="competence-count"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
         <h2 class="text-lg font-semibold text-dark-blue mb-4">
           Nombre de liquidations de subvention par année et compétence
         </h2>
@@ -41,7 +82,10 @@
       </section>
 
       <!-- Chart 3: sum by year and minister -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
+      <section
+        id="ministre-amount"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
         <h2 class="text-lg font-semibold text-dark-blue mb-4">
           Somme des subventions (€) agrégée par année et ministre
         </h2>
@@ -56,10 +100,14 @@
         </div>
       </section>
 
-      <!-- Chart 4: table by beneficiary type and year -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
+      <!-- Chart 4: table by beneficiary type and year (in millions €, excludes "Inconnu") -->
+      <section
+        id="beneficiary-table"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
         <h2 class="text-lg font-semibold text-dark-blue mb-4">
-          Somme des subventions (€) par type de bénéficiaire et par année
+          Somme des subventions par type de bénéficiaire et par année
+          <span class="text-sm font-normal text-gray-400">(en millions €)</span>
         </h2>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -93,10 +141,10 @@
                   :key="i"
                   class="px-3 py-2 text-right tabular-nums text-gray-600"
                 >
-                  {{ $filters.formatToEuros(cell) }}
+                  {{ toMio(cell) }}
                 </td>
                 <td class="px-3 py-2 text-right tabular-nums font-semibold text-gray-900">
-                  {{ $filters.formatToEuros(row.total) }}
+                  {{ toMio(row.total) }}
                 </td>
               </tr>
             </tbody>
@@ -110,10 +158,10 @@
                   :key="i"
                   class="px-3 py-2 text-right tabular-nums font-semibold text-gray-900"
                 >
-                  {{ $filters.formatToEuros(total) }}
+                  {{ toMio(total) }}
                 </td>
                 <td class="px-3 py-2 text-right tabular-nums font-bold text-dark-blue">
-                  {{ $filters.formatToEuros(beneficiaryTable.grandTotal) }}
+                  {{ toMio(beneficiaryTable.grandTotal) }}
                 </td>
               </tr>
             </tfoot>
@@ -121,24 +169,43 @@
         </div>
       </section>
 
-      <!-- Chart 5: grouped bar by beneficiary type and year -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-lg font-semibold text-dark-blue mb-4">
+      <!-- Chart 5: one small bar chart per beneficiary type, each with its own y scale -->
+      <section
+        id="beneficiary-facets"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
+        <h2 class="text-lg font-semibold text-dark-blue mb-1">
           Somme des subventions (€) par type de bénéficiaire (comparaison annuelle)
         </h2>
-        <div
-          class="relative"
-          style="height: 460px"
-        >
-          <BarChart
-            :data="beneficiaryGroupedChart"
-            :options="euroGroupedOptions"
-          />
+        <p class="text-sm text-gray-500 mb-4">
+          Échelle verticale propre à chaque type (en millions €), « Inconnu » exclu.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          <div
+            v-for="facet in beneficiaryFacets"
+            :key="facet.key"
+          >
+            <h3 class="text-sm font-semibold text-gray-700 mb-2 text-center">
+              {{ facet.title }}
+            </h3>
+            <div
+              class="relative"
+              style="height: 260px"
+            >
+              <BarChart
+                :data="facet.data"
+                :options="facet.options"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Sources -->
-      <section class="bg-white rounded-lg shadow-sm p-6">
+      <section
+        id="sources"
+        class="bg-white rounded-lg shadow-sm p-6 scroll-mt-6"
+      >
         <h2 class="text-lg font-semibold text-dark-blue mb-4">
           Sources des données
         </h2>
@@ -185,9 +252,14 @@ const EUR_COMPACT = new Intl.NumberFormat('fr-FR', {
   style: 'currency', currency: 'EUR', notation: 'compact', maximumFractionDigits: 1
 });
 const NUM = new Intl.NumberFormat('fr-FR');
+const MIO = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
 
 // The default color returned by getColorFromCompetence for unmapped competences.
 const COMPETENCE_DEFAULT = '#49508B';
+// Beneficiary type excluded from all beneficiary views.
+const HIDDEN_BENEFICIARY = 'Inconnu';
+// Beneficiary types additionally excluded from the annual-comparison facets only.
+const FACET_HIDDEN_BENEFICIARY = ['E - entité étrangère'];
 
 export default {
   name: 'StatsLayout',
@@ -197,7 +269,15 @@ export default {
       data_loaded: false,
       byCompetence: [], // { year, competence, amount_sum, count }
       byMinistre: [], // { year, ministre, amount_sum }
-      byBeneficiary: [] // { beneficiary_type, year, amount_sum, count }
+      byBeneficiary: [], // { beneficiary_type, year, amount_sum, count }
+      menu: [
+        { href: '#competence-amount', label: 'Compétence (€)' },
+        { href: '#competence-count', label: 'Compétence (nombre)' },
+        { href: '#ministre-amount', label: 'Ministre (€)' },
+        { href: '#beneficiary-table', label: 'Bénéficiaire (tableau)' },
+        { href: '#beneficiary-facets', label: 'Bénéficiaire (annuel)' },
+        { href: '#sources', label: 'Sources' }
+      ]
     };
   },
   computed: {
@@ -216,35 +296,59 @@ export default {
       return this.pivot(this.byMinistre, 'year', 'ministre', 'amount_sum',
         (name, i) => getColorFromPalette(i));
     },
-    beneficiaryGroupedChart() {
-      return this.pivot(this.byBeneficiary, 'beneficiary_type', 'year', 'amount_sum',
-        (name, i) => getColorFromPalette(i));
+    // Rows for the beneficiary views, with "Inconnu" filtered out.
+    beneficiaryRows() {
+      return this.byBeneficiary.filter(r => r.beneficiary_type !== HIDDEN_BENEFICIARY);
     },
     beneficiaryTable() {
-      const years = [...new Set(this.byBeneficiary.map(r => r.year))].sort((a, b) => a - b);
-      const types = [...new Set(this.byBeneficiary.map(r => r.beneficiary_type))]
+      const rows = this.beneficiaryRows;
+      const years = [...new Set(rows.map(r => r.year))].sort((a, b) => a - b);
+      const types = [...new Set(rows.map(r => r.beneficiary_type))]
         .sort((a, b) => String(a).localeCompare(String(b), 'fr'));
       const lookup = {};
-      this.byBeneficiary.forEach(r => {
+      rows.forEach(r => {
         lookup[`${r.beneficiary_type}__${r.year}`] = r.amount_sum;
       });
-      const rows = types.map(t => {
+      const tableRows = types.map(t => {
         const cells = years.map(y => lookup[`${t}__${y}`] ?? 0);
         const total = cells.reduce((a, b) => a + b, 0);
         return { label: this.cleanLabel(t), cells, total };
       });
-      const colTotals = years.map((y, i) => rows.reduce((a, r) => a + r.cells[i], 0));
+      const colTotals = years.map((y, i) => tableRows.reduce((a, r) => a + r.cells[i], 0));
       const grandTotal = colTotals.reduce((a, b) => a + b, 0);
-      return { years, rows, colTotals, grandTotal };
+      return { years, rows: tableRows, colTotals, grandTotal };
+    },
+    // One small bar chart per beneficiary type; each keeps its own auto-scaled y axis.
+    beneficiaryFacets() {
+      const rows = this.beneficiaryRows
+        .filter(r => !FACET_HIDDEN_BENEFICIARY.includes(r.beneficiary_type));
+      const years = [...new Set(rows.map(r => r.year))].sort((a, b) => a - b);
+      const types = [...new Set(rows.map(r => r.beneficiary_type))]
+        .sort((a, b) => String(a).localeCompare(String(b), 'fr'));
+      const lookup = {};
+      rows.forEach(r => {
+        lookup[`${r.beneficiary_type}__${r.year}`] = r.amount_sum;
+      });
+      const options = this.facetOptions();
+      return types.map(t => ({
+        key: t,
+        title: this.cleanLabel(t),
+        data: {
+          labels: years.map(String),
+          datasets: [{
+            label: this.cleanLabel(t),
+            data: years.map(y => lookup[`${t}__${y}`] ?? 0),
+            backgroundColor: years.map((y, i) => getColorFromPalette(i))
+          }]
+        },
+        options
+      }));
     },
     euroStackedOptions() {
       return this.buildOptions({ stacked: true, currency: true });
     },
     countStackedOptions() {
       return this.buildOptions({ stacked: true, currency: false });
-    },
-    euroGroupedOptions() {
-      return this.buildOptions({ stacked: false, currency: true });
     }
   },
   mounted() {
@@ -299,13 +403,18 @@ export default {
       const color = getColorFromCompetence(name);
       return color === COMPETENCE_DEFAULT ? getColorFromPalette(index) : color;
     },
+    // Format a euro amount as millions, e.g. 20349200000 -> "20 349,2 M€".
+    toMio(value) {
+      return `${MIO.format(value / 1e6)} M€`;
+    },
     buildOptions({ stacked, currency }) {
       const fmt = currency ? EUR : NUM;
       const axisFmt = currency ? EUR_COMPACT : NUM;
       return {
         responsive: true,
         maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
+        // Show only the hovered segment (index mode listed every series = unreadable).
+        interaction: { mode: 'nearest', intersect: true },
         plugins: {
           legend: {
             position: 'bottom',
@@ -323,6 +432,29 @@ export default {
             stacked,
             beginAtZero: true,
             ticks: { callback: value => axisFmt.format(value) }
+          }
+        }
+      };
+    },
+    // Options for a single beneficiary-type facet: no legend, y axis in millions €.
+    facetOptions() {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'nearest', intersect: true },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `${MIO.format(ctx.parsed.y / 1e6)} M€`
+            }
+          }
+        },
+        scales: {
+          x: {},
+          y: {
+            beginAtZero: true,
+            ticks: { callback: value => `${MIO.format(value / 1e6)} M` }
           }
         }
       };
