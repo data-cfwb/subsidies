@@ -66,9 +66,15 @@
         </div>
         <p class="text-xs text-gray-500 mt-4">
           ⚠️ Les montants ne tiennent pas compte de l'inflation ni de l'indexation.
-          Certaines compétences changent de nom d'une année à l'autre : « Enseignement supérieur » (2019)
-          devient « Enseignement supérieur et recherche » (2020-), « Enfance » (2019, 2024) alterne avec
-          « Enfance et politique de drogue » (2020-2025). Une série qui s'arrête n'est donc pas forcément une baisse.
+          <template v-if="competenceHarmonized">
+            Les compétences renommées d'une année à l'autre sont regroupées sous leur libellé le plus récent
+            (par exemple « Enseignement supérieur » et « Recherche » en 2019 deviennent « Enseignement supérieur
+            et recherche »). Les libellés d'origine restent ceux des sources ODWB.
+          </template>
+          <template v-else>
+            Certaines compétences changent de nom d'une année à l'autre : une série qui s'arrête n'est donc pas
+            forcément une baisse.
+          </template>
         </p>
       </section>
 
@@ -329,6 +335,7 @@ export default {
       byCompetence: [], // { year, competence, amount_sum, count }
       byMinistre: [], // { year, ministre, amount_sum }
       byBeneficiary: [], // { beneficiary_type, year, amount_sum, count }
+      competenceHarmonized: false, // true when byCompetence uses competence_harmonisee
       TOP_COMPETENCES,
       menu: [
         { href: '#competence-amount', label: 'Compétence (€)' },
@@ -493,12 +500,26 @@ export default {
   methods: {
     load() {
       const url = `${API_BASE}/stats/aggregate`;
+      // Prefer the harmonized competence (labels comparable across years); fall back to the
+      // raw label when the API does not expose it yet.
+      const competenceRequest = axios
+        .get(url, { params: { dimensions: 'year,competence_harmonisee' } })
+        .then(response => ({
+          harmonized: true,
+          rows: response.data.data.map(({ competence_harmonisee, ...row }) => ({
+            ...row, competence: competence_harmonisee
+          }))
+        }))
+        .catch(() => axios
+          .get(url, { params: { dimensions: 'year,competence' } })
+          .then(response => ({ harmonized: false, rows: response.data.data })));
       Promise.all([
-        axios.get(url, { params: { dimensions: 'year,competence' } }),
+        competenceRequest,
         axios.get(url, { params: { dimensions: 'year,ministre', measures: 'amount_sum' } }),
         axios.get(url, { params: { dimensions: 'beneficiary_type,year' } })
       ]).then(([competence, ministre, beneficiary]) => {
-        this.byCompetence = competence.data.data;
+        this.byCompetence = competence.rows;
+        this.competenceHarmonized = competence.harmonized;
         this.byMinistre = ministre.data.data;
         this.byBeneficiary = beneficiary.data.data;
         this.data_loaded = true;
