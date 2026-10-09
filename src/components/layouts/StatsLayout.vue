@@ -311,9 +311,8 @@ const PCT_SIGNED = new Intl.NumberFormat('fr-FR', {
 const TOP_COMPETENCES = 8;
 const OTHER_LABEL = 'Autres';
 const OTHER_COLOR = '#D1D5DB';
-// Single color for the beneficiary facets; anomalous years get the accent color.
+// Single color for the beneficiary facets (anomalous years are flagged by a note only).
 const FACET_COLOR = '#2F3765';
-const FACET_ANOMALY_COLOR = '#F2A900';
 // A year-on-year ratio below 1/x or above x is flagged as "to check in the source".
 const ANOMALY_RATIO = 5;
 // Beneficiary type excluded from all beneficiary views.
@@ -458,10 +457,9 @@ export default {
           const [prev, cur] = [values[i], values[i + 1]];
           const ratio = prev > 0 && cur > 0 ? cur / prev : null;
           return ratio && (ratio > ANOMALY_RATIO || ratio < 1 / ANOMALY_RATIO)
-            ? { index: i + 1, year: y, prevYear: years[i], change: ratio - 1 }
+            ? { year: y, prevYear: years[i], change: ratio - 1 }
             : null;
         }).filter(Boolean);
-        const flagged = new Set(anomalies.map(a => a.index));
         return {
           key: t,
           title: this.cleanLabel(t),
@@ -475,7 +473,7 @@ export default {
             datasets: [{
               label: this.cleanLabel(t),
               data: values,
-              backgroundColor: values.map((v, i) => (flagged.has(i) ? FACET_ANOMALY_COLOR : FACET_COLOR))
+              backgroundColor: FACET_COLOR
             }]
           },
           options
